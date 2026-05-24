@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Duplicate Word Remover – Remove Duplicate Words &amp; Lines | ScrambleFix</title>
+<meta content="duplicate word remover, remove duplicate words, remove duplicate lines, text deduplicator, unique word list" name="keywords"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&amp;family=DM+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0a0e17; --surface: #111827; --border: #1f2937;
+      --accent: #8b5cf6; --accent2: #10b981; --danger: #ef4444;
+      --muted: #6b7280; --text: #f9fafb; --text-soft: #9ca3af; --tile-bg: #1e293b;
+    }
+    body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; min-height: 100vh; }
+    .container { max-width: 860px; margin: 0 auto; padding: 0 20px; }
+    header { padding: 20px 0 0; border-bottom: 1px solid var(--border); background: var(--surface); }
+    .header-inner { max-width: 860px; margin: 0 auto; padding: 0 20px; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+    .logo { font-family: 'Syne', sans-serif; font-size: 1.6rem; font-weight: 800; color: var(--text); text-decoration: none; letter-spacing: -1px; }
+    .logo span { color: #3b82f6; }
+    nav { display: flex; gap: 6px; flex-wrap: wrap; padding-bottom: 12px; }
+    nav a { font-size: .78rem; font-weight: 600; padding: 5px 12px; border-radius: 20px; border: 1px solid var(--border); color: var(--text-soft); text-decoration: none; transition: all .2s; }
+    nav a:hover, nav a.active { border-color: var(--accent); color: var(--accent); }
+    .ad-slot { width: 100%; text-align: center; margin: 24px auto; max-width: 728px; }
+    .hero { padding: 48px 0 0; text-align: center; }
+    .hero h1 { font-family: 'Syne', sans-serif; font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; letter-spacing: -2px; }
+    .hero h1 em { font-style: normal; color: var(--accent); }
+    .hero p { margin: 10px auto 0; max-width: 480px; color: var(--text-soft); font-size: .95rem; }
+    .tool-card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 28px; margin: 28px 0; }
+    /* Options row */
+    .options-row { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-bottom: 20px; }
+    .toggle-group { display: flex; border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+    .toggle-btn { padding: 7px 16px; background: transparent; border: none; color: var(--text-soft); font-size: .82rem; font-weight: 600; cursor: pointer; font-family: 'DM Sans', sans-serif; transition: all .15s; border-right: 1px solid var(--border); }
+    .toggle-btn:last-child { border-right: none; }
+    .toggle-btn.active { background: var(--accent); color: #fff; }
+    .checkbox-label { display: flex; align-items: center; gap: 7px; font-size: .82rem; color: var(--text-soft); cursor: pointer; user-select: none; }
+    .checkbox-label input { accent-color: var(--accent); width: 15px; height: 15px; }
+    label.field-label { display: block; font-size: .75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+    textarea { width: 100%; background: var(--bg); border: 2px solid var(--border); border-radius: 10px; padding: 14px 16px; font-size: .95rem; font-family: 'DM Sans', sans-serif; color: var(--text); resize: vertical; outline: none; transition: border-color .2s; min-height: 130px; }
+    textarea:focus { border-color: var(--accent); }
+    textarea::placeholder { color: var(--muted); }
+    .action-btn { width: 100%; margin-top: 14px; padding: 14px; border: none; border-radius: 10px; background: var(--accent); color: #fff; font-size: .9rem; font-weight: 700; font-family: 'DM Sans', sans-serif; letter-spacing: 1px; text-transform: uppercase; cursor: pointer; transition: background .2s; }
+    .action-btn:hover { background: #7c3aed; }
+    .action-btn:disabled { opacity: .35; cursor: default; }
+    /* Stats */
+    .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 20px 0; border-top: 1px solid var(--border); padding-top: 20px; }
+    .stat-box { background: var(--bg); border: 1px solid var(--border); border-radius: 10px; padding: 16px; text-align: center; }
+    .stat-number { font-family: 'Syne', sans-serif; font-size: 2rem; font-weight: 800; }
+    .stat-label { font-size: .75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; margin-top: 4px; }
+    .stat-box.unique .stat-number { color: var(--accent2); }
+    .stat-box.removed .stat-number { color: var(--danger); }
+    /* Result areas */
+    .result-section { margin-bottom: 16px; }
+    .result-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+    .result-header span { font-size: .75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; }
+    .copy-btn { font-size: .78rem; color: #3b82f6; background: none; border: none; cursor: pointer; font-family: 'DM Sans', sans-serif; font-weight: 600; }
+    .copy-btn:hover { text-decoration: underline; }
+    .word-grid { display: flex; flex-wrap: wrap; gap: 7px; }
+    .word-chip { padding: 6px 13px; border-radius: 6px; font-size: .87rem; font-weight: 500; border: 1px solid; }
+    .word-chip.kept { background: rgba(16,185,129,.08); border-color: rgba(16,185,129,.3); color: var(--accent2); cursor: pointer; transition: all .15s; }
+    .word-chip.kept:hover { background: rgba(16,185,129,.18); }
+    .word-chip.dupe { background: rgba(239,68,68,.07); border-color: rgba(239,68,68,.25); color: var(--danger); text-decoration: line-through; }
+    /* SEO */
+    .seo-section { margin: 40px 0; padding: 28px; background: var(--surface); border: 1px solid var(--border); border-radius: 16px; }
+    .seo-section h2 { font-family: 'Syne', sans-serif; font-size: 1.3rem; font-weight: 800; margin-bottom: 10px; }
+    .seo-section p, .seo-section li { color: var(--text-soft); font-size: .93rem; margin-bottom: 7px; }
+    .seo-section ul { padding-left: 20px; }
+    footer { border-top: 1px solid var(--border); padding: 28px 20px; text-align: center; color: var(--muted); font-size: .82rem; }
+    footer a { color: var(--muted); text-decoration: none; margin: 0 8px; }
+    footer a:hover { color: #3b82f6; }
+    footer p + p { margin-top: 8px; }
+    @media (max-width: 500px) { .stats-grid { grid-template-columns: repeat(3,1fr); } .stat-number { font-size: 1.5rem; } }
+  </style>
+<meta content="Remove duplicate words or lines from any text instantly. Case-sensitive option included. Free online duplicate remover." name="description"/>
+<meta content="index, follow" name="robots"/>
+<meta content="ylM8Cs_qScVCcHf_xd80cJeVOA3JTQLj6cSMRDX2tdY" name="google-site-verification"/>
+<link href="https://scramblefix.io/duplicate-remover.html" rel="canonical"/>
+<meta content="website" property="og:type"/>
+<meta content="https://scramblefix.io/duplicate-remover.html" property="og:url"/>
+<meta content="Duplicate Word Remover – Remove Duplicate Words &amp; Lines | ScrambleFix" property="og:title"/>
+<meta content="Remove duplicate words or lines from any text instantly. Case-sensitive option included. Free online duplicate remover." property="og:description"/>
+<meta content="https://scramblefix.io/og-image.png" property="og:image"/>
+<meta content="ScrambleFix" property="og:site_name"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="Duplicate Word Remover – Remove Duplicate Words &amp; Lines | ScrambleFix" name="twitter:title"/>
+<meta content="Remove duplicate words or lines from any text instantly. Case-sensitive option included. Free online duplicate remover." name="twitter:description"/>
+<meta content="https://scramblefix.io/og-image.png" name="twitter:image"/>
+<script async="" crossorigin="anonymous" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1223182832425564"></script>
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "ScrambleFix Duplicate Remover",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "Web",
+  "url": "https://scramblefix.io/duplicate-remover.html",
+  "publisher": {
+    "@type": "Organization",
+    "name": "ScrambleFix",
+    "url": "https://scramblefix.io"
+  }
+}</script>
+</head>
+<body>
+<header>
+<div class="header-inner">
+<a class="logo" href="/">Scramble<span>Fix</span></a>
+<nav>
+<a href="/">Unscrambler</a>
+<a href="/word-sorter.html">Sorter</a>
+<a href="/sentence-shuffler.html">Shuffler</a>
+<a class="active" href="/duplicate-remover.html">Duplicates</a>
+<a href="/case-converter.html">Case</a>
+</nav>
+</div>
+</header>
+<!-- ═══ AD SLOT — swap YOUR_AD_SLOT with your real slot ID ════════ -->
+<div style="text-align:center;margin:20px auto;max-width:728px;">
+<ins class="adsbygoogle" data-ad-client="ca-pub-1223182832425564" data-ad-format="auto" data-ad-slot="YOUR_AD_SLOT" data-full-width-responsive="true" style="display:block"></ins>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+<div class="container">
+<div class="ad-slot">
+<ins class="adsbygoogle" data-ad-client="ca-pub-1223182832425564" data-ad-format="auto" data-ad-slot="YOUR_AD_SLOT" data-full-width-responsive="true" style="display:block"></ins>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+<div class="hero">
+<h1>Duplicate <em>Remover</em></h1>
+<p>Strip repeated words or lines — see exactly what was removed and copy clean results.</p>
+</div>
+<div class="tool-card">
+<div class="options-row">
+<div class="toggle-group">
+<button class="toggle-btn active" data-mode="words">Words</button>
+<button class="toggle-btn" data-mode="lines">Lines</button>
+</div>
+<label class="checkbox-label">
+<input id="case-check" type="checkbox"/>
+        Case-sensitive
+      </label>
+</div>
+<label class="field-label">Your text</label>
+<textarea id="text-input" placeholder="apple, banana, apple, cherry, banana, date…"></textarea>
+<button class="action-btn" disabled="" id="run-btn">Remove Duplicates</button>
+<div id="results-area" style="display:none;">
+<div class="stats-grid">
+<div class="stat-box"><div class="stat-number" id="stat-total">0</div><div class="stat-label">Total</div></div>
+<div class="stat-box unique"><div class="stat-number" id="stat-unique">0</div><div class="stat-label">Unique</div></div>
+<div class="stat-box removed"><div class="stat-number" id="stat-removed">0</div><div class="stat-label">Removed</div></div>
+</div>
+<div class="result-section">
+<div class="result-header">
+<span>Unique items</span>
+<button class="copy-btn" id="copy-kept">Copy</button>
+</div>
+<div class="word-grid" id="kept-grid"></div>
+</div>
+<div class="result-section" id="dupe-section">
+<div class="result-header">
+<span>Duplicates removed</span>
+</div>
+<div class="word-grid" id="dupe-grid"></div>
+</div>
+</div>
+</div>
+<div class="ad-slot">
+<ins class="adsbygoogle" data-ad-client="ca-pub-1223182832425564" data-ad-format="auto" data-ad-slot="YOUR_AD_SLOT_2" data-full-width-responsive="true" style="display:block"></ins>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+<div class="seo-section">
+<h2>When to Use the Duplicate Remover</h2>
+<ul>
+<li>Cleaning up a keyword list before uploading to Google Ads</li>
+<li>Deduplicating email lists or CSV exports</li>
+<li>Removing repeated entries from Scrabble word lists</li>
+<li>Tidying notes, tags, or any repeated content</li>
+</ul>
+<p style="margin-top:12px;">Switch between <strong>Words</strong> mode (separates by space/comma) and <strong>Lines</strong> mode (separates by line break) to handle any format.</p>
+</div>
+</div>
+<footer>
+<p><a href="/">Home</a><a href="/about.html">About</a><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a><a href="/contact.html">Contact</a></p>
+<p>© 2026 ScrambleFix · scramblefix.io</p>
+<p style="margin-top:8px;font-size:.72rem;opacity:.5;">ScrambleFix is not affiliated with Scrabble®, Wordle®, Words With Friends®, Hasbro, Mattel, The New York Times, or Zynga.</p>
+</footer>
+<script>
+(function () {
+  const textInput   = document.getElementById('text-input');
+  const runBtn      = document.getElementById('run-btn');
+  const resultsArea = document.getElementById('results-area');
+  const keptGrid    = document.getElementById('kept-grid');
+  const dupeGrid    = document.getElementById('dupe-grid');
+  const dupeSection = document.getElementById('dupe-section');
+  const copyKeptBtn = document.getElementById('copy-kept');
+  const caseCheck   = document.getElementById('case-check');
+  const toggleBtns  = document.querySelectorAll('.toggle-btn');
+  let activeMode = 'words';
+  let keptWords = [];
+
+  toggleBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      toggleBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      activeMode = btn.dataset.mode;
+    });
+  });
+
+  textInput.addEventListener('input', () => { runBtn.disabled = !textInput.value.trim(); });
+
+  runBtn.addEventListener('click', () => {
+    const raw = activeMode === 'lines'
+      ? textInput.value.split('\n')
+      : textInput.value.trim().split(/[\s,]+/);
+    const items   = raw.map(s => s.trim()).filter(Boolean);
+    const caseSens= caseCheck.checked;
+    const seen    = new Set();
+    const kept    = [];
+    const dupes   = [];
+
+    items.forEach(item => {
+      const key = caseSens ? item : item.toLowerCase();
+      if (seen.has(key)) { dupes.push(item); }
+      else { seen.add(key); kept.push(item); }
+    });
+
+    keptWords = kept;
+    document.getElementById('stat-total').textContent   = items.length;
+    document.getElementById('stat-unique').textContent  = kept.length;
+    document.getElementById('stat-removed').textContent = dupes.length;
+
+    keptGrid.innerHTML = '';
+    kept.forEach(word => {
+      const chip = document.createElement('button');
+      chip.className = 'word-chip kept';
+      chip.textContent = word;
+      chip.title = 'Click to copy';
+      chip.addEventListener('click', () => {
+        navigator.clipboard.writeText(word).then(() => {
+          const old = chip.textContent;
+          chip.textContent = '✓';
+          setTimeout(() => chip.textContent = old, 1200);
+        });
+      });
+      keptGrid.appendChild(chip);
+    });
+
+    dupeGrid.innerHTML = '';
+    [...new Set(dupes.map(d => caseSens ? d : d.toLowerCase()))].forEach(word => {
+      const chip = document.createElement('span');
+      chip.className = 'word-chip dupe';
+      chip.textContent = word;
+      dupeGrid.appendChild(chip);
+    });
+
+    dupeSection.style.display = dupes.length > 0 ? 'block' : 'none';
+    resultsArea.style.display = 'block';
+  });
+
+  copyKeptBtn.addEventListener('click', () => {
+    const sep = activeMode === 'lines' ? '\n' : ', ';
+    navigator.clipboard.writeText(keptWords.join(sep)).then(() => {
+      copyKeptBtn.textContent = '✓ Copied!';
+      setTimeout(() => copyKeptBtn.textContent = 'Copy', 2000);
+    });
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Boggle Solver – Find All Words in a Boggle Board | ScrambleFix</title>
+<meta content="Enter your 4×4 Boggle board and instantly find every valid word using adjacent letters. Sorted by length and score. Free online Boggle solver." name="description"/>
+<meta content="index, follow" name="robots"/>
+<meta content="ylM8Cs_qScVCcHf_xd80cJeVOA3JTQLj6cSMRDX2tdY" name="google-site-verification"/>
+<link href="https://scramblefix.io/boggle-solver.html" rel="canonical"/>
+<meta content="website" property="og:type"/>
+<meta content="https://scramblefix.io/boggle-solver.html" property="og:url"/>
+<meta content="Boggle Solver – Find All Words in a Boggle Board | ScrambleFix" property="og:title"/>
+<meta content="Enter your 4×4 Boggle board and instantly find every valid word using adjacent letters. Sorted by length and score. Free online Boggle solver." property="og:description"/>
+<meta content="https://scramblefix.io/og-image.png" property="og:image"/>
+<meta content="ScrambleFix" property="og:site_name"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="Boggle Solver – Find All Words in a Boggle Board | ScrambleFix" name="twitter:title"/>
+<meta content="Enter your 4×4 Boggle board and instantly find every valid word using adjacent letters. Sorted by length and score. Free online Boggle solver." name="twitter:description"/>
+<meta content="https://scramblefix.io/og-image.png" name="twitter:image"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&amp;family=DM+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<script async="" crossorigin="anonymous" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1223182832425564"></script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "Boggle Solver \u2013 Find All Words in a Boggle Board | ScrambleFix", "description": "Enter your 4\u00d74 Boggle board and instantly find every valid word using adjacent letters. Sorted by length and score. Free online Boggle solver.", "url": "https://scramblefix.io/boggle-solver.html", "applicationCategory": "GameApplication", "operatingSystem": "Web", "publisher": {"@type": "Organization", "name": "ScrambleFix", "url": "https://scramblefix.io"}}</script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#0a0e17;--surface:#111827;--border:#1f2937;--accent:#3b82f6;
+  --accent2:#10b981;--yellow:#eab308;--muted:#6b7280;--text:#f9fafb;
+  --text-soft:#9ca3af;--tile-bg:#1e293b;--red:#ef4444}
+body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;min-height:100vh}
+.container{max-width:880px;margin:0 auto;padding:0 20px}
+header{padding:20px 0 0;border-bottom:1px solid var(--border);background:var(--surface)}
+.header-inner{max-width:880px;margin:0 auto;padding:0 20px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.logo{font-family:'Syne',sans-serif;font-size:1.6rem;font-weight:800;color:var(--text);text-decoration:none;letter-spacing:-1px}
+.logo span{color:var(--accent)}
+nav{display:flex;gap:6px;flex-wrap:wrap;padding-bottom:12px}
+nav a{font-size:.78rem;font-weight:600;padding:5px 12px;border-radius:20px;border:1px solid var(--border);color:var(--text-soft);text-decoration:none;transition:all .2s;white-space:nowrap}
+nav a:hover,nav a.active{border-color:var(--accent);color:var(--accent)}
+.ad-slot{width:100%;text-align:center;margin:20px auto;max-width:728px}
+.hero{padding:40px 0 24px;text-align:center}
+.hero h1{font-family:'Syne',sans-serif;font-size:clamp(1.8rem,5vw,2.8rem);font-weight:800;letter-spacing:-1.5px;line-height:1.1}
+.hero h1 em{font-style:normal;color:var(--accent)}
+.hero p{margin:10px auto 0;max-width:540px;color:var(--text-soft);font-size:.92rem;line-height:1.6}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:24px;margin-bottom:14px}
+label.lbl{display:block;font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.8px;color:var(--muted);margin-bottom:8px}
+input[type=text]{width:100%;background:var(--bg);border:2px solid var(--border);border-radius:10px;padding:12px 14px;font-size:.95rem;font-family:'DM Sans',sans-serif;color:var(--text);outline:none;transition:border-color .2s}
+input[type=text]:focus{border-color:var(--accent)}
+input[type=text]::placeholder{color:var(--muted)}
+.btn{width:100%;margin-top:12px;padding:12px;border-radius:10px;border:none;background:var(--accent);color:#fff;font-size:.9rem;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;transition:background .15s}
+.btn:hover{background:#2563eb}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.btn-outline{background:transparent;border:1px solid var(--border);color:var(--text-soft)}
+.btn-outline:hover{border-color:var(--accent);color:var(--accent);background:transparent}
+.word-chip{display:inline-block;padding:5px 12px;background:var(--tile-bg);border:1px solid var(--border);border-radius:8px;font-family:'Syne',sans-serif;font-size:.82rem;font-weight:700;color:var(--text);cursor:pointer;transition:all .15s;letter-spacing:.5px;margin:3px}
+.word-chip:hover{border-color:var(--accent);color:var(--accent)}
+.pangram{border-color:var(--yellow);color:var(--yellow)}
+.stat{background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:10px 16px;text-align:center;flex:1;min-width:80px}
+.stat-val{font-family:'Syne',sans-serif;font-size:1.4rem;font-weight:800;color:var(--accent)}
+.stat-lbl{font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.4px}
+.stats-row{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:16px}
+.related{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:20px;margin:20px 0;text-align:center}
+.related h2{font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;margin-bottom:12px;color:var(--text-soft)}
+.related-links{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+.related-links a{padding:6px 14px;border-radius:20px;border:1px solid var(--border);color:var(--text-soft);text-decoration:none;font-size:.78rem;font-weight:600;transition:all .2s}
+.related-links a:hover{border-color:var(--accent);color:var(--accent)}
+footer{border-top:1px solid var(--border);background:var(--surface);padding:20px;text-align:center;font-size:.75rem;color:var(--muted)}
+footer a{color:var(--muted);text-decoration:none;margin:0 8px}
+footer a:hover{color:var(--text-soft)}
+</style>
+</head><body><header><div class="header-inner">
+<a class="logo" href="/">Scramble<span>Fix</span></a>
+<nav>
+<a href="/">Unscrambler</a>
+<a href="/scrabble-word-finder.html">Scrabble</a>
+<a href="/wordle-helper.html">Wordle</a>
+<a href="/words-with-friends-helper.html">WWF</a>
+<a href="/two-letter-words.html">2-Letter</a>
+<a href="/word-sorter.html">Sorter</a>
+<a href="/sentence-shuffler.html">Shuffler</a>
+<a href="/duplicate-remover.html">Duplicates</a>
+<a href="/case-converter.html">Case</a>
+</nav>
+</div></header><div class="ad-slot"><ins class="adsbygoogle" data-ad-client="ca-pub-1223182832425564" data-ad-format="auto" data-ad-slot="YOUR_AD_SLOT" data-full-width-responsive="true" style="display:block"></ins>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
+<div class="container">
+<div class="hero">
+<h1>Boggle <em>Solver</em></h1>
+<p>Enter your 4×4 Boggle board and find every valid word. Letters must connect adjacently — diagonals count, reuse doesn't.</p>
+</div>
+<div class="card">
+<label class="lbl">Enter your 4×4 board (left to right, top to bottom)</label>
+<div id="boggle-grid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;max-width:260px;margin:0 auto 16px"><input autocapitalize="characters" autocomplete="off" class="boggle-cell" data-idx="0" maxlength="1" placeholder="A" style="text-align:center;font-family:'Syne',sans-serif;font-weight:800;font-size:1.4rem;text-transform:uppercase;padding:12px 4px;border-radius:10px" type="text"/><input autocapitalize="characters" autocomplete="off" class="boggle-cell" data-idx="1" maxlength="1" placeholder="B" style="text-align:center;font-family:'Syne',sans-serif;font-weight:800;font-size:1.4rem;text-transform:uppercase;padding:12px 4px;border-radius:10px" type="text"/><input autocapitalize="characters" autocomplete="off" class="boggle-cell" data-idx="2" maxlength="1" placeholder="C" style="text-align:center;font-family:'Syne',sans-serif;font-weight:800;font-size:1.4rem;text-transform:uppercase;padding:12px 4px;border-radius:10px" type="text"/><input autocapitalize="characters" autocomplete="off" class="boggle-cell" data-idx="3" maxlength="1" placeholder="D" style="text-align:center;font-family:'Syne',sans-serif;font-weight:800;font-size:1.4rem;text-transform:uppercase;padding:12px 4px;border-radius:10px" type="text"/><input autocapitalize="characters" autocomplete="off" class="boggle-cell" data-idx="4" maxlength="1" placeholder="E" style="text-align:center;font-family:'Syne',sans-serif;font-weight:800;font-size:1.4rem;text-transform:uppercase;padding:12px 4px;border-radius:10px" type="text"/><input autocapitalize="characters" autocomplete="off" class="boggle-cell" data-idx="5" maxlength="1" placeholder="F" style="text-align:center;font-family:'Syne',sans-serif;font-weight:800;font-size:1.4rem;text-transform:uppercase;padding:12px 4px;border-radius:10px" type="text"/><input autocapitalize="characters" autocomplete="off" class="boggle-cell" data-idx="6" maxlength="1" placeholder="G" style="text-align:center;font-family:'Syne',sans-serif;font-weight:800;font-size:1.4rem;text-transform:uppercase;padding:12px 4px;border-radius:10px" type="text"/><input autocapitalize="characters" autocomplete="off" class="boggle-cell" data-idx="7" maxlength="1" placeholder="H" style="text-align:center;font-family:'Syne',sans-serif;font-weight:800;font-size:1.4rem;text-transform:uppercase;padding:12px 4px;border-radius:10px" type="text"/><input autocapitalize="characters" autocomplete="off" class="boggle-cell" data-idx="8" maxlength="1" placeholder="I" style="text-align:center;font-family:'Syne',sans-serif;font-weight:800;font-size:1.4rem;text-transform:uppercase;padding:12px 4px;border-radius:10px" type="text"/><input autocapitalize="characters" autocomplete="off" class="boggle-cell" data-idx="9" maxlength="1" placeholder="J" style="text-align:center;font-family:'Syne',sans-serif;font-weight:800;font-size:1.4rem;text-transform:uppercase;padding:12px 4px;border-radius:10px" type="text"/><input autocapitalize="characters" autocomplete="off" class="boggle-cell" data-idx="10" maxlength="1" placeholder="K" style="text-align:center;font-family:'Syne',sans-serif;font-weight:800;font-size:1.4rem;text-transform:uppercase;padding:12px 4px;border-radius:10px" type="text"/><input autocapitalize="characters" autocomplete="off" class="boggle-cell" data-idx="11" maxlength="1" placeholder="L" style="text-align:center;font-family:'Syne',sans-serif;font-weight:800;font-size:1.4rem;text-transform:uppercase;padding:12px 4px;border-radius:10px" type="text"/><input autocapitalize="characters" autocomplete="off" class="boggle-cell" data-idx="12" maxlength="1" placeholder="M" style="text-align:center;font-family:'Syne',sans-serif;font-weight:800;font-size:1.4rem;text-transform:uppercase;padding:12px 4px;border-radius:10px" type="text"/><input autocapitalize="characters" autocomplete="off" class="boggle-cell" data-idx="13" maxlength="1" placeholder="N" style="text-align:center;font-family:'Syne',sans-serif;font-weight:800;font-size:1.4rem;text-transform:uppercase;padding:12px 4px;border-radius:10px" type="text"/><input autocapitalize="characters" autocomplete="off" class="boggle-cell" data-idx="14" maxlength="1" placeholder="O" style="text-align:center;font-family:'Syne',sans-serif;font-weight:800;font-size:1.4rem;text-transform:uppercase;padding:12px 4px;border-radius:10px" type="text"/><input autocapitalize="characters" autocomplete="off" class="boggle-cell" data-idx="15" maxlength="1" placeholder="P" style="text-align:center;font-family:'Syne',sans-serif;font-weight:800;font-size:1.4rem;text-transform:uppercase;padding:12px 4px;border-radius:10px" type="text"/></div>
+<div style="display:flex;gap:8px">
+<button class="btn" disabled="" id="boggle-btn">Find All Words</button>
+<button class="btn btn-outline" id="boggle-clear" style="max-width:100px">Clear</button>
+</div>
+</div>
+<div class="card" id="boggle-results" style="display:none">
+<div class="stats-row" id="boggle-stats"></div>
+<div id="len-filter" style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px"></div>
+<div id="boggle-grid-out" style="display:flex;flex-wrap:wrap;gap:6px"></div>
+</div>
+<div class="related"><h2>Related Tools</h2><div class="related-links"><a href="/">Word Unscrambler</a><a href="/wordle-solver.html">Wordle Solver</a><a href="/spelling-bee-helper.html">Spelling Bee Helper</a><a href="/anagram-solver.html">Anagram Solver</a><a href="/scrabble-word-finder.html">Scrabble Word Finder</a></div></div></div><script>
+var dict=null;var trie={};var allFound=[];
+fetch('/words.js').then(function(r){return r.text();}).then(function(t){
+  var m=t.match(/DICTIONARY=(\[.*\])/s);
+  if(!m)return;
+  var words=JSON.parse(m[1]);
+  words.forEach(function(w){
+    if(w.length<3)return;
+    var node=trie;
+    for(var i=0;i<w.length;i++){
+      if(!node[w[i]])node[w[i]]={};
+      node=node[w[i]];
+    }
+    node.$=1;
+  });
+});
+
+var cells=document.querySelectorAll('.boggle-cell');
+var btn=document.getElementById('boggle-btn');
+cells.forEach(function(c,i){
+  c.addEventListener('input',function(){
+    c.value=c.value.toUpperCase().replace(/[^A-Z]/g,'');
+    if(c.value&&i<15)cells[i+1].focus();
+    var filled=Array.from(cells).filter(function(x){return x.value;}).length;
+    btn.disabled=filled<16;
+  });
+});
+document.getElementById('boggle-clear').addEventListener('click',function(){
+  cells.forEach(function(c){c.value='';});
+  btn.disabled=true;
+  document.getElementById('boggle-results').style.display='none';
+  cells[0].focus();
+});
+
+var DIRS=[[-1,-1],[-1,0],[-1,1],[0,-1],[0,1],[1,-1],[1,0],[1,1]];
+function solve(grid){
+  var found=new Set();
+  function dfs(r,c,node,path,visited){
+    var ch=grid[r][c];
+    if(!node[ch])return;
+    node=node[ch];path+=ch;
+    if(node.$&&path.length>=3)found.add(path);
+    visited.add(r*4+c);
+    DIRS.forEach(function(d){
+      var nr=r+d[0],nc=c+d[1];
+      if(nr>=0&&nr<4&&nc>=0&&nc<4&&!visited.has(nr*4+nc))dfs(nr,nc,node,path,new Set(visited));
+    });
+  }
+  for(var r=0;r<4;r++)for(var c=0;c<4;c++)dfs(r,c,trie,'',[].reduce(function(){},new Set()));
+  for(var r2=0;r2<4;r2++)for(var c2=0;c2<4;c2++)dfs(r2,c2,trie,'',new Set());
+  return [...found].sort(function(a,b){return b.length-a.length||a.localeCompare(b);});
+}
+
+btn.addEventListener('click',function(){
+  if(!Object.keys(trie).length){alert('Dictionary loading, please wait.');return;}
+  var grid=[];
+  for(var r=0;r<4;r++){grid.push([]);for(var c=0;c<4;c++)grid[r].push(cells[r*4+c].value);}
+  allFound=solve(grid);
+  var lens=[...new Set(allFound.map(function(w){return w.length;}))].sort(function(a,b){return b-a;});
+  document.getElementById('boggle-stats').innerHTML=
+    '<div class="stat"><div class="stat-val">'+allFound.length+'</div><div class="stat-lbl">Words found</div></div>'+
+    '<div class="stat"><div class="stat-val">'+(allFound[0]?allFound[0].length:0)+'</div><div class="stat-lbl">Longest word</div></div>'+
+    '<div class="stat"><div class="stat-val">'+(allFound.filter(function(w){return w.length>=6;}).length)+'</div><div class="stat-lbl">6+ letter words</div></div>';
+  var lf=document.getElementById('len-filter');
+  lf.innerHTML='<span class="word-chip" data-len="all" style="border-color:var(--accent);color:var(--accent)">All</span>'+
+    lens.map(function(l){return '<span class="word-chip" data-len="'+l+'">'+l+' letters ('+allFound.filter(function(w){return w.length===l;}).length+')</span>';}).join('');
+  lf.querySelectorAll('.word-chip').forEach(function(b){
+    b.addEventListener('click',function(){
+      lf.querySelectorAll('.word-chip').forEach(function(x){x.style.borderColor='';x.style.color='';});
+      b.style.borderColor='var(--accent)';b.style.color='var(--accent)';
+      var len=b.dataset.len;
+      var filtered=len==='all'?allFound:allFound.filter(function(w){return w.length===parseInt(len);});
+      document.getElementById('boggle-grid-out').innerHTML=filtered.map(function(w){
+        return '<span class="word-chip">'+w+'</span>';}).join('');
+    });
+  });
+  document.getElementById('boggle-grid-out').innerHTML=allFound.map(function(w){
+    return '<span class="word-chip">'+w+'</span>';}).join('');
+  document.getElementById('boggle-results').style.display='block';
+});
+</script><div class="ad-slot"><ins class="adsbygoogle" data-ad-client="ca-pub-1223182832425564" data-ad-format="auto" data-ad-slot="YOUR_AD_SLOT" data-full-width-responsive="true" style="display:block"></ins>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div><footer>
+<a href="/about.html">About</a><a href="/privacy.html">Privacy</a>
+<a href="/terms.html">Terms</a><a href="/contact.html">Contact</a>
+<p style="margin-top:8px">© 2025 ScrambleFix  ·  Not affiliated with Scrabble®, Wordle®, or Words With Friends®</p>
+</footer></body></html>

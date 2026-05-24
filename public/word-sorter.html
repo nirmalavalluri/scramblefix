@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Word Sorter – Sort Words A–Z, by Length or Reverse | ScrambleFix</title>
+<meta content="word sorter, sort words alphabetically, word list sorter, alphabetical order tool" name="keywords"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&amp;family=DM+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0a0e17; --surface: #111827; --border: #1f2937;
+      --accent: #3b82f6; --accent2: #10b981; --muted: #6b7280;
+      --text: #f9fafb; --text-soft: #9ca3af; --tile-bg: #1e293b;
+    }
+    body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; min-height: 100vh; }
+    .container { max-width: 860px; margin: 0 auto; padding: 0 20px; }
+    /* Header */
+    header { padding: 20px 0 0; border-bottom: 1px solid var(--border); background: var(--surface); }
+    .header-inner { max-width: 860px; margin: 0 auto; padding: 0 20px; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+    .logo { font-family: 'Syne', sans-serif; font-size: 1.6rem; font-weight: 800; color: var(--text); text-decoration: none; letter-spacing: -1px; }
+    .logo span { color: var(--accent); }
+    nav { display: flex; gap: 6px; flex-wrap: wrap; padding-bottom: 12px; }
+    nav a { font-size: .78rem; font-weight: 600; padding: 5px 12px; border-radius: 20px; border: 1px solid var(--border); color: var(--text-soft); text-decoration: none; transition: all .2s; }
+    nav a:hover, nav a.active { border-color: var(--accent); color: var(--accent); }
+    /* Ad */
+    .ad-slot { width: 100%; text-align: center; margin: 24px auto; max-width: 728px; }
+    /* Hero */
+    .hero { padding: 48px 0 0; text-align: center; }
+    .hero h1 { font-family: 'Syne', sans-serif; font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; letter-spacing: -2px; }
+    .hero h1 em { font-style: normal; color: var(--accent); }
+    .hero p { margin: 10px auto 0; max-width: 480px; color: var(--text-soft); font-size: .95rem; }
+    /* Card */
+    .tool-card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 28px; margin: 28px 0; }
+    /* Mode buttons */
+    .mode-row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
+    .mode-btn { padding: 8px 16px; border-radius: 8px; border: 1px solid var(--border); background: transparent; color: var(--text-soft); font-size: .82rem; font-weight: 600; cursor: pointer; transition: all .15s; font-family: 'DM Sans', sans-serif; }
+    .mode-btn.active, .mode-btn:hover { background: var(--accent); border-color: var(--accent); color: #fff; }
+    /* Textarea */
+    label.field-label { display: block; font-size: .75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+    textarea {
+      width: 100%; background: var(--bg); border: 2px solid var(--border); border-radius: 10px;
+      padding: 14px 16px; font-size: .95rem; font-family: 'DM Sans', sans-serif;
+      color: var(--text); resize: vertical; outline: none; transition: border-color .2s;
+      min-height: 130px;
+    }
+    textarea:focus { border-color: var(--accent); }
+    textarea::placeholder { color: var(--muted); }
+    /* Button */
+    .action-btn {
+      width: 100%; margin-top: 14px; padding: 14px; border: none; border-radius: 10px;
+      background: var(--accent); color: #fff; font-size: .9rem; font-weight: 700;
+      font-family: 'DM Sans', sans-serif; letter-spacing: 1px; text-transform: uppercase;
+      cursor: pointer; transition: background .2s, transform .1s;
+    }
+    .action-btn:hover { background: #2563eb; }
+    .action-btn:active { transform: scale(.98); }
+    .action-btn:disabled { opacity: .35; cursor: default; }
+    /* Results */
+    .result-header { display: flex; align-items: center; justify-content: space-between; margin: 20px 0 12px; border-top: 1px solid var(--border); padding-top: 18px; }
+    .result-header span { font-size: .78rem; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; }
+    .copy-btn { font-size: .78rem; color: var(--accent); background: none; border: none; cursor: pointer; font-family: 'DM Sans', sans-serif; font-weight: 600; }
+    .copy-btn:hover { text-decoration: underline; }
+    .word-grid { display: flex; flex-wrap: wrap; gap: 8px; }
+    .word-chip { padding: 7px 14px; border-radius: 6px; background: var(--tile-bg); border: 1px solid var(--border); color: var(--text); font-size: .88rem; font-weight: 500; cursor: pointer; transition: all .15s; }
+    .word-chip:hover { border-color: var(--accent); color: var(--accent); }
+    .word-chip.copied { background: var(--accent2); border-color: var(--accent2); color: #fff; }
+    /* SEO block */
+    .seo-section { margin: 40px 0; padding: 28px; background: var(--surface); border: 1px solid var(--border); border-radius: 16px; }
+    .seo-section h2 { font-family: 'Syne', sans-serif; font-size: 1.3rem; font-weight: 800; margin-bottom: 10px; }
+    .seo-section p, .seo-section li { color: var(--text-soft); font-size: .93rem; margin-bottom: 7px; }
+    .seo-section ul { padding-left: 20px; }
+    /* Footer */
+    footer { border-top: 1px solid var(--border); padding: 28px 20px; text-align: center; color: var(--muted); font-size: .82rem; }
+    footer a { color: var(--muted); text-decoration: none; margin: 0 8px; }
+    footer a:hover { color: var(--accent); }
+    footer p + p { margin-top: 8px; }
+    @media (max-width: 500px) { .tool-card { padding: 18px; } .mode-btn { font-size: .75rem; } }
+  </style>
+<meta content="Sort any list of words alphabetically, by length or in reverse order instantly. Free online word sorting tool with one-click copy." name="description"/>
+<meta content="index, follow" name="robots"/>
+<meta content="ylM8Cs_qScVCcHf_xd80cJeVOA3JTQLj6cSMRDX2tdY" name="google-site-verification"/>
+<link href="https://scramblefix.io/word-sorter.html" rel="canonical"/>
+<meta content="website" property="og:type"/>
+<meta content="https://scramblefix.io/word-sorter.html" property="og:url"/>
+<meta content="Word Sorter – Sort Words A–Z, by Length or Reverse | ScrambleFix" property="og:title"/>
+<meta content="Sort any list of words alphabetically, by length or in reverse order instantly. Free online word sorting tool with one-click copy." property="og:description"/>
+<meta content="https://scramblefix.io/og-image.png" property="og:image"/>
+<meta content="ScrambleFix" property="og:site_name"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="Word Sorter – Sort Words A–Z, by Length or Reverse | ScrambleFix" name="twitter:title"/>
+<meta content="Sort any list of words alphabetically, by length or in reverse order instantly. Free online word sorting tool with one-click copy." name="twitter:description"/>
+<meta content="https://scramblefix.io/og-image.png" name="twitter:image"/>
+<script async="" crossorigin="anonymous" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1223182832425564"></script>
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "ScrambleFix Word Sorter",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "Web",
+  "url": "https://scramblefix.io/word-sorter.html",
+  "publisher": {
+    "@type": "Organization",
+    "name": "ScrambleFix",
+    "url": "https://scramblefix.io"
+  }
+}</script>
+</head>
+<body>
+<header>
+<div class="header-inner">
+<a class="logo" href="/">Scramble<span>Fix</span></a>
+<nav>
+<a href="/">Unscrambler</a>
+<a href="/scrabble-word-finder.html">Scrabble</a>
+<a href="/wordle-helper.html">Wordle</a>
+<a class="active" href="/word-sorter.html">Sorter</a>
+<a href="/case-converter.html">Case</a>
+<a href="/duplicate-remover.html">Duplicates</a>
+</nav>
+</div>
+</header>
+<!-- ═══ AD SLOT — swap YOUR_AD_SLOT with your real slot ID ════════ -->
+<div style="text-align:center;margin:20px auto;max-width:728px;">
+<ins class="adsbygoogle" data-ad-client="ca-pub-1223182832425564" data-ad-format="auto" data-ad-slot="YOUR_AD_SLOT" data-full-width-responsive="true" style="display:block"></ins>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+<div class="container">
+<div class="ad-slot">
+<ins class="adsbygoogle" data-ad-client="ca-pub-1223182832425564" data-ad-format="auto" data-ad-slot="YOUR_AD_SLOT" data-full-width-responsive="true" style="display:block"></ins>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+<div class="hero">
+<h1>Word <em>Sorter</em></h1>
+<p>Sort any list of words alphabetically, by length, or in reverse — instantly.</p>
+</div>
+<div class="tool-card">
+<label class="field-label">Sort mode</label>
+<div class="mode-row">
+<button class="mode-btn active" data-mode="az">A → Z</button>
+<button class="mode-btn" data-mode="za">Z → A</button>
+<button class="mode-btn" data-mode="short">Shortest first</button>
+<button class="mode-btn" data-mode="long">Longest first</button>
+<button class="mode-btn" data-mode="rev">Reverse order</button>
+</div>
+<label class="field-label">Your words (space or comma separated)</label>
+<textarea id="word-input" placeholder="apple, banana, cherry, date, elderberry…"></textarea>
+<button class="action-btn" disabled="" id="sort-btn">Sort Words</button>
+<div id="output-area" style="display:none;">
+<div class="result-header">
+<span id="result-count"></span>
+<button class="copy-btn" id="copy-all-btn">Copy all</button>
+</div>
+<div class="word-grid" id="word-grid"></div>
+</div>
+</div>
+<div class="ad-slot">
+<ins class="adsbygoogle" data-ad-client="ca-pub-1223182832425564" data-ad-format="auto" data-ad-slot="YOUR_AD_SLOT_2" data-full-width-responsive="true" style="display:block"></ins>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+<div class="seo-section">
+<h2>How to Use the Word Sorter</h2>
+<p>Paste any list of words into the box above, choose your sort mode, and click Sort Words. Results appear instantly and can be copied with one click.</p>
+<ul>
+<li><strong>A → Z</strong> — Standard alphabetical order</li>
+<li><strong>Z → A</strong> — Reverse alphabetical order</li>
+<li><strong>Shortest first</strong> — Great for finding short Scrabble plays</li>
+<li><strong>Longest first</strong> — Spot your highest-value words instantly</li>
+<li><strong>Reverse order</strong> — Flip the order of your original list</li>
+</ul>
+</div>
+</div>
+<footer>
+<p><a href="/">Home</a><a href="/about.html">About</a><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a><a href="/contact.html">Contact</a></p>
+<p>© 2026 ScrambleFix · scramblefix.io</p>
+<p style="margin-top:8px;font-size:.72rem;opacity:.5;">ScrambleFix is not affiliated with Scrabble®, Wordle®, Words With Friends®, Hasbro, Mattel, The New York Times, or Zynga.</p>
+</footer>
+<script>
+(function () {
+  const wordInput = document.getElementById('word-input');
+  const sortBtn   = document.getElementById('sort-btn');
+  const outputArea= document.getElementById('output-area');
+  const wordGrid  = document.getElementById('word-grid');
+  const countEl   = document.getElementById('result-count');
+  const copyAllBtn= document.getElementById('copy-all-btn');
+  const modeBtns  = document.querySelectorAll('.mode-btn');
+  let activeMode  = 'az';
+  let sorted      = [];
+
+  modeBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      modeBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      activeMode = btn.dataset.mode;
+    });
+  });
+
+  wordInput.addEventListener('input', () => {
+    sortBtn.disabled = !wordInput.value.trim();
+  });
+
+  function sortWords(words, mode) {
+    switch (mode) {
+      case 'az':    return [...words].sort((a,b) => a.localeCompare(b));
+      case 'za':    return [...words].sort((a,b) => b.localeCompare(a));
+      case 'short': return [...words].sort((a,b) => a.length - b.length || a.localeCompare(b));
+      case 'long':  return [...words].sort((a,b) => b.length - a.length || a.localeCompare(b));
+      case 'rev':   return [...words].reverse();
+      default:      return words;
+    }
+  }
+
+  sortBtn.addEventListener('click', () => {
+    const raw = wordInput.value.trim().split(/[\s,]+/).filter(Boolean);
+    sorted = sortWords(raw, activeMode);
+    wordGrid.innerHTML = '';
+    sorted.forEach(word => {
+      const chip = document.createElement('button');
+      chip.className = 'word-chip';
+      chip.textContent = word;
+      chip.addEventListener('click', () => {
+        navigator.clipboard.writeText(word).then(() => {
+          chip.classList.add('copied');
+          chip.textContent = '✓';
+          setTimeout(() => { chip.classList.remove('copied'); chip.textContent = word; }, 1200);
+        });
+      });
+      wordGrid.appendChild(chip);
+    });
+    countEl.textContent = `${sorted.length} words sorted`;
+    outputArea.style.display = 'block';
+  });
+
+  copyAllBtn.addEventListener('click', () => {
+    navigator.clipboard.writeText(sorted.join(', ')).then(() => {
+      copyAllBtn.textContent = '✓ Copied!';
+      setTimeout(() => copyAllBtn.textContent = 'Copy all', 2000);
+    });
+  });
+})();
+</script>
+</body>
+</html>

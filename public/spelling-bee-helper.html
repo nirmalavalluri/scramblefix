@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Spelling Bee Helper – NYT Spelling Bee Word Finder | ScrambleFix</title>
+<meta content="Find all valid words and pangrams for the NYT Spelling Bee puzzle. Enter the center letter and 6 outer letters to get every possible answer." name="description"/>
+<meta content="index, follow" name="robots"/>
+<meta content="ylM8Cs_qScVCcHf_xd80cJeVOA3JTQLj6cSMRDX2tdY" name="google-site-verification"/>
+<link href="https://scramblefix.io/spelling-bee-helper.html" rel="canonical"/>
+<meta content="website" property="og:type"/>
+<meta content="https://scramblefix.io/spelling-bee-helper.html" property="og:url"/>
+<meta content="Spelling Bee Helper – NYT Spelling Bee Word Finder | ScrambleFix" property="og:title"/>
+<meta content="Find all valid words and pangrams for the NYT Spelling Bee puzzle. Enter the center letter and 6 outer letters to get every possible answer." property="og:description"/>
+<meta content="https://scramblefix.io/og-image.png" property="og:image"/>
+<meta content="ScrambleFix" property="og:site_name"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="Spelling Bee Helper – NYT Spelling Bee Word Finder | ScrambleFix" name="twitter:title"/>
+<meta content="Find all valid words and pangrams for the NYT Spelling Bee puzzle. Enter the center letter and 6 outer letters to get every possible answer." name="twitter:description"/>
+<meta content="https://scramblefix.io/og-image.png" name="twitter:image"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&amp;family=DM+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<script async="" crossorigin="anonymous" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1223182832425564"></script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "Spelling Bee Helper \u2013 NYT Spelling Bee Word Finder | ScrambleFix", "description": "Find all valid words and pangrams for the NYT Spelling Bee puzzle. Enter the center letter and 6 outer letters to get every possible answer.", "url": "https://scramblefix.io/spelling-bee-helper.html", "applicationCategory": "GameApplication", "operatingSystem": "Web", "publisher": {"@type": "Organization", "name": "ScrambleFix", "url": "https://scramblefix.io"}}</script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#0a0e17;--surface:#111827;--border:#1f2937;--accent:#3b82f6;
+  --accent2:#10b981;--yellow:#eab308;--muted:#6b7280;--text:#f9fafb;
+  --text-soft:#9ca3af;--tile-bg:#1e293b;--red:#ef4444}
+body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;min-height:100vh}
+.container{max-width:880px;margin:0 auto;padding:0 20px}
+header{padding:20px 0 0;border-bottom:1px solid var(--border);background:var(--surface)}
+.header-inner{max-width:880px;margin:0 auto;padding:0 20px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.logo{font-family:'Syne',sans-serif;font-size:1.6rem;font-weight:800;color:var(--text);text-decoration:none;letter-spacing:-1px}
+.logo span{color:var(--accent)}
+nav{display:flex;gap:6px;flex-wrap:wrap;padding-bottom:12px}
+nav a{font-size:.78rem;font-weight:600;padding:5px 12px;border-radius:20px;border:1px solid var(--border);color:var(--text-soft);text-decoration:none;transition:all .2s;white-space:nowrap}
+nav a:hover,nav a.active{border-color:var(--accent);color:var(--accent)}
+.ad-slot{width:100%;text-align:center;margin:20px auto;max-width:728px}
+.hero{padding:40px 0 24px;text-align:center}
+.hero h1{font-family:'Syne',sans-serif;font-size:clamp(1.8rem,5vw,2.8rem);font-weight:800;letter-spacing:-1.5px;line-height:1.1}
+.hero h1 em{font-style:normal;color:var(--accent)}
+.hero p{margin:10px auto 0;max-width:540px;color:var(--text-soft);font-size:.92rem;line-height:1.6}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:24px;margin-bottom:14px}
+label.lbl{display:block;font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.8px;color:var(--muted);margin-bottom:8px}
+input[type=text]{width:100%;background:var(--bg);border:2px solid var(--border);border-radius:10px;padding:12px 14px;font-size:.95rem;font-family:'DM Sans',sans-serif;color:var(--text);outline:none;transition:border-color .2s}
+input[type=text]:focus{border-color:var(--accent)}
+input[type=text]::placeholder{color:var(--muted)}
+.btn{width:100%;margin-top:12px;padding:12px;border-radius:10px;border:none;background:var(--accent);color:#fff;font-size:.9rem;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;transition:background .15s}
+.btn:hover{background:#2563eb}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.btn-outline{background:transparent;border:1px solid var(--border);color:var(--text-soft)}
+.btn-outline:hover{border-color:var(--accent);color:var(--accent);background:transparent}
+.word-chip{display:inline-block;padding:5px 12px;background:var(--tile-bg);border:1px solid var(--border);border-radius:8px;font-family:'Syne',sans-serif;font-size:.82rem;font-weight:700;color:var(--text);cursor:pointer;transition:all .15s;letter-spacing:.5px;margin:3px}
+.word-chip:hover{border-color:var(--accent);color:var(--accent)}
+.pangram{border-color:var(--yellow);color:var(--yellow)}
+.stat{background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:10px 16px;text-align:center;flex:1;min-width:80px}
+.stat-val{font-family:'Syne',sans-serif;font-size:1.4rem;font-weight:800;color:var(--accent)}
+.stat-lbl{font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.4px}
+.stats-row{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:16px}
+.related{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:20px;margin:20px 0;text-align:center}
+.related h2{font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;margin-bottom:12px;color:var(--text-soft)}
+.related-links{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+.related-links a{padding:6px 14px;border-radius:20px;border:1px solid var(--border);color:var(--text-soft);text-decoration:none;font-size:.78rem;font-weight:600;transition:all .2s}
+.related-links a:hover{border-color:var(--accent);color:var(--accent)}
+footer{border-top:1px solid var(--border);background:var(--surface);padding:20px;text-align:center;font-size:.75rem;color:var(--muted)}
+footer a{color:var(--muted);text-decoration:none;margin:0 8px}
+footer a:hover{color:var(--text-soft)}
+</style>
+</head><body><header><div class="header-inner">
+<a class="logo" href="/">Scramble<span>Fix</span></a>
+<nav>
+<a href="/">Unscrambler</a>
+<a href="/scrabble-word-finder.html">Scrabble</a>
+<a href="/wordle-helper.html">Wordle</a>
+<a href="/words-with-friends-helper.html">WWF</a>
+<a href="/two-letter-words.html">2-Letter</a>
+<a href="/word-sorter.html">Sorter</a>
+<a href="/sentence-shuffler.html">Shuffler</a>
+<a href="/duplicate-remover.html">Duplicates</a>
+<a href="/case-converter.html">Case</a>
+</nav>
+</div></header><div class="ad-slot"><ins class="adsbygoogle" data-ad-client="ca-pub-1223182832425564" data-ad-format="auto" data-ad-slot="YOUR_AD_SLOT" data-full-width-responsive="true" style="display:block"></ins>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
+<div class="container">
+<div class="hero">
+<h1>Spelling Bee <em>Helper</em></h1>
+<p>Enter the center letter and 6 outer letters to find every valid word and pangram for the NYT Spelling Bee puzzle.</p>
+</div>
+<div class="card">
+<div style="display:flex;gap:16px;flex-wrap:wrap;align-items:flex-end;margin-bottom:16px">
+<div style="flex:0 0 auto">
+<label class="lbl">⬡ Center letter <span style="color:var(--yellow)">(required)</span></label>
+<input autocapitalize="characters" autocomplete="off" id="center-inp" maxlength="1" placeholder="e.g. A" style="text-align:center;font-family:'Syne',sans-serif;font-weight:800;font-size:1.5rem;
+        text-transform:uppercase;width:64px;padding:10px 4px;border-color:var(--yellow)" type="text"/>
+</div>
+<div style="flex:1;min-width:180px">
+<label class="lbl">⬡ Outer letters <span style="color:var(--muted)">(6 letters)</span></label>
+<input autocapitalize="characters" autocomplete="off" id="outer-inp" maxlength="6" placeholder="e.g. TILNGR" style="font-family:'Syne',sans-serif;font-weight:700;font-size:1.1rem;
+        text-transform:uppercase;letter-spacing:4px" type="text"/>
+</div>
+</div>
+<button class="btn" id="bee-btn">Find Words</button>
+</div>
+<div id="bee-results" style="display:none">
+<div class="card">
+<div class="stats-row" id="bee-stats"></div>
+</div>
+<div class="card" id="pangram-card" style="display:none">
+<label class="lbl" style="color:var(--yellow)">⭐ Pangrams (use all 7 letters)</label>
+<div id="pangram-grid" style="display:flex;flex-wrap:wrap;gap:6px;margin-top:8px"></div>
+</div>
+<div class="card">
+<label class="lbl">All valid words</label>
+<div id="sort-btns" style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px">
+<button class="word-chip" data-sort="alpha" style="border-color:var(--accent);color:var(--accent)">A–Z</button>
+<button class="word-chip" data-sort="len">By length</button>
+<button class="word-chip" data-sort="pts">By points</button>
+</div>
+<div id="bee-grid" style="display:flex;flex-wrap:wrap;gap:6px"></div>
+</div>
+</div>
+<div class="related"><h2>Related Tools</h2><div class="related-links"><a href="/wordle-solver.html">Wordle Solver</a><a href="/5-letter-words.html">5-Letter Words</a><a href="/">Word Unscrambler</a><a href="/scrabble-word-finder.html">Scrabble Word Finder</a><a href="/vowel-heavy-words.html">Vowel Heavy Words</a></div></div></div><script>
+var dict=null;var beeWords=[];var activeSort='alpha';
+fetch('/words.js').then(function(r){return r.text();}).then(function(t){
+  var m=t.match(/DICTIONARY=(\[.*\])/s);
+  if(m) dict=JSON.parse(m[1]);
+});
+function beePoints(w){return w.length===4?1:w.length;}
+document.getElementById('bee-btn').addEventListener('click',function(){
+  if(!dict){alert('Dictionary loading, please wait.');return;}
+  var center=document.getElementById('center-inp').value.toUpperCase().replace(/[^A-Z]/g,'');
+  var outer=document.getElementById('outer-inp').value.toUpperCase().replace(/[^A-Z]/g,'');
+  if(!center||outer.length<6){alert('Enter 1 center letter and 6 outer letters.');return;}
+  var allowed=new Set((center+outer).split(''));
+  beeWords=dict.filter(function(w){
+    if(w.length<4)return false;
+    if(!w.includes(center))return false;
+    for(var i=0;i<w.length;i++){if(!allowed.has(w[i]))return false;}
+    return true;
+  });
+  var pangrams=beeWords.filter(function(w){return allowed.size===7&&new Set(w.split('')).size===7;});
+  var pts=beeWords.reduce(function(s,w){return s+beePoints(w);},0);
+  document.getElementById('bee-stats').innerHTML=
+    '<div class="stat"><div class="stat-val">'+beeWords.length+'</div><div class="stat-lbl">Words found</div></div>'+
+    '<div class="stat"><div class="stat-val">'+pangrams.length+'</div><div class="stat-lbl">Pangrams</div></div>'+
+    '<div class="stat"><div class="stat-val">'+pts+'</div><div class="stat-lbl">Total points</div></div>';
+  if(pangrams.length){
+    document.getElementById('pangram-grid').innerHTML=pangrams.map(function(w){
+      return '<span class="word-chip pangram">'+w+'</span>';}).join('');
+    document.getElementById('pangram-card').style.display='block';
+  }else document.getElementById('pangram-card').style.display='none';
+  renderBee();
+  document.getElementById('bee-results').style.display='block';
+});
+function renderBee(){
+  var sorted=[...beeWords];
+  if(activeSort==='alpha') sorted.sort();
+  else if(activeSort==='len') sorted.sort(function(a,b){return b.length-a.length||a.localeCompare(b);});
+  else sorted.sort(function(a,b){return beePoints(b)-beePoints(a);});
+  document.getElementById('bee-grid').innerHTML=sorted.map(function(w){
+    return '<span class="word-chip" title="'+beePoints(w)+' pts">'+w+'</span>';}).join('');
+}
+document.querySelectorAll('#sort-btns .word-chip').forEach(function(b){
+  b.addEventListener('click',function(){
+    document.querySelectorAll('#sort-btns .word-chip').forEach(function(x){
+      x.style.borderColor='';x.style.color='';});
+    b.style.borderColor='var(--accent)';b.style.color='var(--accent)';
+    activeSort=b.dataset.sort;renderBee();
+  });
+});
+</script><div class="ad-slot"><ins class="adsbygoogle" data-ad-client="ca-pub-1223182832425564" data-ad-format="auto" data-ad-slot="YOUR_AD_SLOT" data-full-width-responsive="true" style="display:block"></ins>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div><footer>
+<a href="/about.html">About</a><a href="/privacy.html">Privacy</a>
+<a href="/terms.html">Terms</a><a href="/contact.html">Contact</a>
+<p style="margin-top:8px">© 2025 ScrambleFix  ·  Not affiliated with Scrabble®, Wordle®, or Words With Friends®</p>
+</footer></body></html>

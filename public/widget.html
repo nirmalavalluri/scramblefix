@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>ScrambleFix Widget</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;600&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#0a0e17;--surface:#111827;--border:#1f2937;--accent:#3b82f6;--accent2:#10b981;--muted:#6b7280;--text:#f9fafb;--soft:#9ca3af;--tile:#1e293b}
+body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;padding:16px}
+.logo{font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:800;color:var(--text);text-decoration:none;letter-spacing:-0.5px;display:block;margin-bottom:12px}
+.logo span{color:var(--accent)}
+.logo small{font-size:.65rem;color:var(--muted);font-weight:400;font-family:'DM Sans',sans-serif;letter-spacing:0;margin-left:6px}
+.inp-row{display:flex;gap:8px;margin-bottom:10px}
+input{flex:1;background:var(--surface);border:2px solid var(--border);border-radius:8px;padding:10px 12px;font-size:1rem;font-family:'Syne',sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:3px;color:var(--text);outline:none;transition:border-color .2s}
+input:focus{border-color:var(--accent)}
+input::placeholder{color:var(--muted);letter-spacing:1px;font-weight:400;font-size:.85rem;text-transform:none}
+.go{background:var(--accent);border:none;border-radius:8px;padding:10px 18px;color:#fff;font-weight:700;font-size:.85rem;cursor:pointer;font-family:'DM Sans',sans-serif;transition:background .15s;white-space:nowrap}
+.go:hover{background:#2563eb}
+.go:disabled{opacity:.4;cursor:not-allowed}
+#results{margin-top:8px}
+.group{margin-bottom:14px}
+.g-title{font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--muted);margin-bottom:6px;padding-bottom:4px;border-bottom:1px solid var(--border)}
+.words{display:flex;flex-wrap:wrap;gap:5px}
+.chip{padding:4px 10px;background:var(--tile);border:1px solid var(--border);border-radius:6px;font-family:'Syne',sans-serif;font-size:.75rem;font-weight:700;color:var(--text);cursor:pointer;transition:all .12s;letter-spacing:.3px}
+.chip:hover{border-color:var(--accent);color:var(--accent)}
+.chip.ok{background:var(--accent2);border-color:var(--accent2);color:#fff}
+.empty{text-align:center;padding:20px;color:var(--muted);font-size:.85rem}
+.spinner{display:none;text-align:center;padding:16px;color:var(--muted);font-size:.82rem}
+.poweredby{margin-top:12px;text-align:right;font-size:.65rem;color:var(--muted)}
+.poweredby a{color:var(--muted);text-decoration:none}
+.poweredby a:hover{color:var(--soft)}
+</style>
+</head>
+<body>
+<a class="logo" href="https://scramblefix.io" target="_blank">Scramble<span>Fix</span><small>word unscrambler</small></a>
+<div class="inp-row">
+  <input type="text" id="wi" placeholder="Enter letters…" maxlength="15" autocomplete="off" autocapitalize="characters"/>
+  <button class="go" id="wb" disabled>Go</button>
+</div>
+<div class="spinner" id="ws">Searching…</div>
+<div id="results"></div>
+<div class="poweredby">Powered by <a href="https://scramblefix.io" target="_blank">scramblefix.io</a></div>
+
+<script>
+var dict=null;
+var inp=document.getElementById('wi'),btn=document.getElementById('wb'),spin=document.getElementById('ws'),res=document.getElementById('results');
+inp.addEventListener('input',function(){btn.disabled=!inp.value.replace(/[^a-zA-Z]/g,'');});
+inp.addEventListener('keydown',function(e){if(e.key==='Enter'&&!btn.disabled)go();});
+btn.addEventListener('click',go);
+fetch('https://scramblefix.io/words.js').then(function(r){return r.text();}).then(function(t){
+  var m=t.match(/DICTIONARY=(\[.*\])/s);if(m)dict=JSON.parse(m[1]);
+}).catch(function(){});
+function go(){
+  if(!dict){res.innerHTML='<div class="empty">Dictionary loading…</div>';return;}
+  var lets=inp.value.toUpperCase().replace(/[^A-Z]/g,'');
+  var counts={};lets.split('').forEach(function(c){counts[c]=(counts[c]||0)+1;});
+  spin.style.display='block';res.innerHTML='';
+  setTimeout(function(){
+    var found={};
+    dict.forEach(function(w){
+      var wc={},ok=true;
+      for(var i=0;i<w.length;i++){var c=w[i];wc[c]=(wc[c]||0)+1;if(wc[c]>(counts[c]||0)){ok=false;break;}}
+      if(ok){if(!found[w.length])found[w.length]=[];found[w.length].push(w);}
+    });
+    spin.style.display='none';
+    var keys=Object.keys(found).map(Number).sort(function(a,b){return b-a;});
+    if(!keys.length){res.innerHTML='<div class="empty">No words found.</div>';return;}
+    res.innerHTML=keys.map(function(len){
+      var words=found[len].sort();
+      return '<div class="group"><div class="g-title">'+len+' letters ('+words.length+')</div>'+
+        '<div class="words">'+words.map(function(w){
+          return '<button class="chip" onclick="cp(this,\''+w+'\')">'+w+'</button>';
+        }).join('')+'</div></div>';
+    }).join('');
+  },10);
+}
+function cp(el,w){
+  navigator.clipboard.writeText(w).then(function(){
+    el.classList.add('ok');setTimeout(function(){el.classList.remove('ok');},1200);
+  });
+}
+</script>
+</body>
+</html>

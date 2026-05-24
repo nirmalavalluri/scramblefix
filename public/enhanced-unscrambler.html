@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Enhanced Word Unscrambler – Filter by Length &amp; Sort | ScrambleFix</title>
+<meta content="word unscrambler, unscramble letters, find words from letters, anagram solver, scrabble unscrambler, wordle unscrambler" name="keywords"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&amp;family=DM+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0a0e17; --surface: #111827; --border: #1f2937;
+      --accent: #3b82f6; --accent2: #10b981; --gold: #f59e0b;
+      --muted: #6b7280; --text: #f9fafb; --text-soft: #9ca3af; --tile-bg: #1e293b;
+    }
+    body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; min-height: 100vh; }
+    .container { max-width: 860px; margin: 0 auto; padding: 0 20px; }
+    header { padding: 20px 0 0; border-bottom: 1px solid var(--border); background: var(--surface); }
+    .header-inner { max-width: 860px; margin: 0 auto; padding: 0 20px; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+    .logo { font-family: 'Syne', sans-serif; font-size: 1.6rem; font-weight: 800; color: var(--text); text-decoration: none; letter-spacing: -1px; }
+    .logo span { color: var(--accent); }
+    nav { display: flex; gap: 6px; flex-wrap: wrap; padding-bottom: 12px; }
+    nav a { font-size: .78rem; font-weight: 600; padding: 5px 12px; border-radius: 20px; border: 1px solid var(--border); color: var(--text-soft); text-decoration: none; transition: all .2s; }
+    nav a:hover, nav a.active { border-color: var(--accent); color: var(--accent); }
+    .ad-slot { width: 100%; text-align: center; margin: 24px auto; max-width: 728px; }
+    /* Hero */
+    .hero { padding: 48px 0 0; text-align: center; }
+    .hero .badge { display: inline-block; background: rgba(59,130,246,.15); border: 1px solid rgba(59,130,246,.3); color: var(--accent); font-size: .72rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; padding: 4px 12px; border-radius: 20px; margin-bottom: 14px; }
+    .hero h1 { font-family: 'Syne', sans-serif; font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 800; letter-spacing: -2px; }
+    .hero h1 em { font-style: normal; color: var(--accent); }
+    .hero p { margin: 10px auto 0; max-width: 500px; color: var(--text-soft); font-size: .95rem; }
+    /* Tool card */
+    .tool-card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 28px; margin: 28px 0; }
+    /* Tile row */
+    #tile-row { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; min-height: 52px; margin-bottom: 18px; }
+    .tile { width: 46px; height: 46px; display: flex; align-items: center; justify-content: center; background: var(--accent); color: #fff; font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.15rem; border-radius: 8px; animation: pop .14s ease-out; }
+    @keyframes pop { from { transform: scale(.6); opacity:0; } to { transform: scale(1); opacity:1; } }
+    /* Input */
+    .input-row { display: flex; gap: 10px; }
+    #letter-input { flex: 1; background: var(--bg); border: 2px solid var(--border); border-radius: 10px; padding: 14px 18px; font-size: 1.3rem; font-family: 'Syne', sans-serif; font-weight: 700; color: var(--text); letter-spacing: 5px; text-transform: uppercase; text-align: center; outline: none; transition: border-color .2s; }
+    #letter-input:focus { border-color: var(--accent); }
+    #letter-input::placeholder { font-size: 1rem; letter-spacing: 1px; font-family: 'DM Sans', sans-serif; text-transform: none; font-weight: 400; color: var(--muted); }
+    #solve-btn { background: var(--accent); color: #fff; border: none; border-radius: 10px; padding: 14px 24px; font-size: .88rem; font-weight: 700; font-family: 'DM Sans', sans-serif; letter-spacing: 1px; text-transform: uppercase; cursor: pointer; transition: background .2s; white-space: nowrap; }
+    #solve-btn:hover { background: #2563eb; }
+    #solve-btn:disabled { opacity: .35; cursor: default; }
+    /* Filters */
+    .filter-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; align-items: center; }
+    .filter-label { font-size: .73rem; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; }
+    .filter-btn { padding: 5px 13px; border-radius: 20px; border: 1px solid var(--border); background: transparent; color: var(--text-soft); font-size: .78rem; font-weight: 600; cursor: pointer; transition: all .15s; font-family: 'DM Sans', sans-serif; }
+    .filter-btn.active, .filter-btn:hover { background: var(--accent); border-color: var(--accent); color: #fff; }
+    /* Sort */
+    .sort-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; align-items: center; }
+    .sort-btn { padding: 4px 11px; border-radius: 20px; border: 1px solid var(--border); background: transparent; color: var(--text-soft); font-size: .73rem; font-weight: 600; cursor: pointer; transition: all .15s; font-family: 'DM Sans', sans-serif; }
+    .sort-btn.active { background: var(--tile-bg); border-color: var(--text-soft); color: var(--text); }
+    /* Stats */
+    #stats-bar { display: none; margin: 6px 0 18px; font-size: .82rem; color: var(--muted); gap: 16px; align-items: center; flex-wrap: wrap; }
+    #stats-bar strong { color: var(--accent2); }
+    .copy-all-btn { font-size: .78rem; color: var(--accent); background: none; border: none; cursor: pointer; font-family: 'DM Sans', sans-serif; font-weight: 600; margin-left: auto; }
+    .copy-all-btn:hover { text-decoration: underline; }
+    /* Spinner */
+    #spinner { display: none; text-align: center; padding: 40px; color: var(--muted); }
+    .spin { display: inline-block; width: 20px; height: 20px; border: 2px solid var(--border); border-top-color: var(--accent); border-radius: 50%; animation: spin .7s linear infinite; margin-right: 10px; vertical-align: middle; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    /* Results */
+    #results-area { }
+    .length-group { margin-bottom: 22px; }
+    .length-header { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+    .length-badge { width: 32px; height: 32px; background: var(--accent); color: #fff; border-radius: 7px; display: flex; align-items: center; justify-content: center; font-family: 'Syne', sans-serif; font-weight: 800; font-size: .9rem; }
+    .length-badge.gold { background: var(--gold); color: #0a0e17; }
+    .length-count { font-size: .78rem; color: var(--muted); }
+    .word-grid { display: flex; flex-wrap: wrap; gap: 7px; }
+    .word-chip { padding: 6px 14px; border-radius: 6px; background: var(--tile-bg); border: 1px solid var(--border); color: var(--text); font-size: .88rem; font-weight: 500; cursor: pointer; transition: all .15s; }
+    .word-chip:hover { border-color: var(--accent); color: var(--accent); }
+    .word-chip.copied { background: var(--accent2); border-color: var(--accent2); color: #fff; font-weight: 700; }
+    #empty-state { display: none; text-align: center; padding: 40px; color: var(--muted); }
+    /* SEO */
+    .seo-section { margin: 40px 0; padding: 28px; background: var(--surface); border: 1px solid var(--border); border-radius: 16px; }
+    .seo-section h2 { font-family: 'Syne', sans-serif; font-size: 1.3rem; font-weight: 800; margin-bottom: 10px; }
+    .seo-section p, .seo-section li { color: var(--text-soft); font-size: .93rem; margin-bottom: 7px; }
+    .seo-section ul { padding-left: 20px; }
+    /* Tools grid */
+    .tools-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px,1fr)); gap: 10px; margin-top: 16px; }
+    .tool-link { display: flex; flex-direction: column; gap: 4px; padding: 14px; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; text-decoration: none; transition: all .2s; }
+    .tool-link:hover { border-color: var(--accent); transform: translateY(-2px); }
+    .tool-link .ti { font-size: 1.3rem; }
+    .tool-link .tn { font-weight: 700; font-size: .85rem; color: var(--text); }
+    .tool-link .td { font-size: .75rem; color: var(--muted); }
+    footer { border-top: 1px solid var(--border); padding: 28px 20px; text-align: center; color: var(--muted); font-size: .82rem; }
+    footer a { color: var(--muted); text-decoration: none; margin: 0 8px; }
+    footer a:hover { color: var(--accent); }
+    footer p + p { margin-top: 8px; }
+    @media (max-width: 500px) { .input-row { flex-direction: column; } #solve-btn { width: 100%; } .tool-card { padding: 18px; } }
+  </style>
+<meta content="Advanced word unscrambler with letter tile preview, length filters and sort options. 270,000-word dictionary runs entirely in your browser." name="description"/>
+<meta content="index, follow" name="robots"/>
+<meta content="ylM8Cs_qScVCcHf_xd80cJeVOA3JTQLj6cSMRDX2tdY" name="google-site-verification"/>
+<link href="https://scramblefix.io/enhanced-unscrambler.html" rel="canonical"/>
+<meta content="website" property="og:type"/>
+<meta content="https://scramblefix.io/enhanced-unscrambler.html" property="og:url"/>
+<meta content="Enhanced Word Unscrambler – Filter by Length &amp; Sort | ScrambleFix" property="og:title"/>
+<meta content="Advanced word unscrambler with letter tile preview, length filters and sort options. 270,000-word dictionary runs entirely in your browser." property="og:description"/>
+<meta content="https://scramblefix.io/og-image.png" property="og:image"/>
+<meta content="ScrambleFix" property="og:site_name"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="Enhanced Word Unscrambler – Filter by Length &amp; Sort | ScrambleFix" name="twitter:title"/>
+<meta content="Advanced word unscrambler with letter tile preview, length filters and sort options. 270,000-word dictionary runs entirely in your browser." name="twitter:description"/>
+<meta content="https://scramblefix.io/og-image.png" name="twitter:image"/>
+<script async="" crossorigin="anonymous" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1223182832425564"></script>
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "ScrambleFix Enhanced Unscrambler",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "Web",
+  "url": "https://scramblefix.io/enhanced-unscrambler.html",
+  "publisher": {
+    "@type": "Organization",
+    "name": "ScrambleFix",
+    "url": "https://scramblefix.io"
+  }
+}</script>
+</head>
+<body>
+<header>
+<div class="header-inner">
+<a class="logo" href="/">Scramble<span>Fix</span></a>
+<nav>
+<a class="active" href="/">Unscrambler</a>
+<a href="/scrabble-word-finder.html">Scrabble</a>
+<a href="/wordle-helper.html">Wordle</a>
+<a href="/word-sorter.html">Sorter</a>
+<a href="/case-converter.html">Case</a>
+</nav>
+</div>
+</header>
+<!-- ═══ AD SLOT — swap YOUR_AD_SLOT with your real slot ID ════════ -->
+<div style="text-align:center;margin:20px auto;max-width:728px;">
+<ins class="adsbygoogle" data-ad-client="ca-pub-1223182832425564" data-ad-format="auto" data-ad-slot="YOUR_AD_SLOT" data-full-width-responsive="true" style="display:block"></ins>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+<div class="container">
+<div class="ad-slot">
+<ins class="adsbygoogle" data-ad-client="ca-pub-1223182832425564" data-ad-format="auto" data-ad-slot="YOUR_AD_SLOT" data-full-width-responsive="true" style="display:block"></ins>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+<div class="hero">
+<div class="badge">✦ Enhanced Edition</div>
+<h1>Unscramble <em>Every</em> Word</h1>
+<p>270,000-word dictionary. Filtered by length. Grouped by letter count. Zero server calls — pure speed.</p>
+</div>
+<div class="tool-card">
+<div id="tile-row"></div>
+<div class="input-row">
+<input autocomplete="off" autocorrect="off" id="letter-input" maxlength="15" placeholder="Enter scrambled letters…" spellcheck="false" type="text"/>
+<button disabled="" id="solve-btn">Find Words</button>
+</div>
+<div class="filter-row">
+<span class="filter-label">Length:</span>
+<button class="filter-btn active" data-len="all">All</button>
+<button class="filter-btn" data-len="2">2</button>
+<button class="filter-btn" data-len="3">3</button>
+<button class="filter-btn" data-len="4">4</button>
+<button class="filter-btn" data-len="5">5</button>
+<button class="filter-btn" data-len="6">6</button>
+<button class="filter-btn" data-len="7">7+</button>
+</div>
+<div class="sort-row">
+<span class="filter-label">Sort:</span>
+<button class="sort-btn active" data-sort="length-desc">Longest first</button>
+<button class="sort-btn" data-sort="length-asc">Shortest first</button>
+<button class="sort-btn" data-sort="alpha">A–Z</button>
+</div>
+</div>
+<div id="stats-bar" style="display:flex; display:none;">
+<strong id="stats-count">0</strong> words found
+    <span id="stats-time"></span>
+<button class="copy-all-btn" id="copy-all-btn">Copy all</button>
+</div>
+<div id="spinner"><span class="spin"></span>Searching 270,000 words…</div>
+<div id="results-area"></div>
+<div id="empty-state">No words found. Try removing the length filter or different letters.</div>
+<div class="ad-slot" id="mid-ad" style="display:none;">
+<ins class="adsbygoogle" data-ad-client="ca-pub-1223182832425564" data-ad-format="auto" data-ad-slot="YOUR_MID_AD_SLOT" data-full-width-responsive="true" style="display:block"></ins>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+<div class="seo-section">
+<h2>More Word Tools</h2>
+<div class="tools-grid">
+<a class="tool-link" href="/scrabble-word-finder.html"><span class="ti">🎯</span><span class="tn">Scrabble Finder</span><span class="td">High-value tiles</span></a>
+<a class="tool-link" href="/wordle-helper.html"><span class="ti">🟩</span><span class="tn">Wordle Helper</span><span class="td">Green &amp; yellow clues</span></a>
+<a class="tool-link" href="/word-sorter.html"><span class="ti">🔤</span><span class="tn">Word Sorter</span><span class="td">A-Z, by length</span></a>
+<a class="tool-link" href="/case-converter.html"><span class="ti">Aa</span><span class="tn">Case Converter</span><span class="td">8 formats live</span></a>
+<a class="tool-link" href="/duplicate-remover.html"><span class="ti">🗑️</span><span class="tn">Duplicate Remover</span><span class="td">Clean any list</span></a>
+<a class="tool-link" href="/sentence-shuffler.html"><span class="ti">🔀</span><span class="tn">Sentence Shuffler</span><span class="td">Randomize text</span></a>
+</div>
+</div>
+<div class="seo-section">
+<h2>How the Enhanced Unscrambler Works</h2>
+<p>Enter up to 15 letters and ScrambleFix checks every word in our 270,000-word English dictionary — entirely in your browser. No data leaves your device. Results appear in under 100ms and are grouped by word length so you can find the best plays instantly.</p>
+<ul>
+<li>✅ Filter results by exact word length (2–7+ letters)</li>
+<li>✅ Sort longest first, shortest first, or alphabetically</li>
+<li>✅ Click any word to copy it instantly</li>
+<li>✅ Works offline once the page has loaded</li>
+</ul>
+</div>
+</div>
+<footer>
+<p><a href="/">Home</a><a href="/about.html">About</a><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a><a href="/contact.html">Contact</a></p>
+<p>© 2026 ScrambleFix · scramblefix.io</p>
+<p style="margin-top:8px;font-size:.72rem;opacity:.5;">ScrambleFix is not affiliated with Scrabble®, Wordle®, Words With Friends®, Hasbro, Mattel, The New York Times, or Zynga.</p>
+</footer>
+<!-- Load dictionary + engine first -->
+<script src="words.js"></script>
+<script src="engine.js"></script>
+<script>
+(function () {
+  const letterInput  = document.getElementById('letter-input');
+  const solveBtn     = document.getElementById('solve-btn');
+  const tileRow      = document.getElementById('tile-row');
+  const statsBar     = document.getElementById('stats-bar');
+  const statsCount   = document.getElementById('stats-count');
+  const statsTime    = document.getElementById('stats-time');
+  const spinner      = document.getElementById('spinner');
+  const resultsArea  = document.getElementById('results-area');
+  const emptyState   = document.getElementById('empty-state');
+  const midAd        = document.getElementById('mid-ad');
+  const copyAllBtn   = document.getElementById('copy-all-btn');
+  const filterBtns   = document.querySelectorAll('.filter-btn');
+  const sortBtns     = document.querySelectorAll('.sort-btn');
+
+  let lastResult    = null;
+  let activeFilter  = 'all';
+  let activeSort    = 'length-desc';
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      activeFilter = btn.dataset.len;
+      if (lastResult) renderResults(lastResult);
+    });
+  });
+
+  sortBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      sortBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      activeSort = btn.dataset.sort;
+      if (lastResult) renderResults(lastResult);
+    });
+  });
+
+  function renderTiles(val) {
+    tileRow.innerHTML = '';
+    val.toUpperCase().split('').forEach(ch => {
+      const t = document.createElement('div');
+      t.className = 'tile';
+      t.textContent = ch;
+      tileRow.appendChild(t);
+    });
+  }
+
+  function sortWords(arr, mode) {
+    const copy = [...arr];
+    if (mode === 'length-desc') return copy.sort((a,b) => b.length - a.length || a.localeCompare(b));
+    if (mode === 'length-asc')  return copy.sort((a,b) => a.length - b.length || a.localeCompare(b));
+    return copy.sort((a,b) => a.localeCompare(b));
+  }
+
+  function renderResults(result) {
+    resultsArea.innerHTML = '';
+    emptyState.style.display = 'none';
+    statsBar.style.display   = 'none';
+
+    let words = result.words;
+
+    // Apply filter
+    if (activeFilter !== 'all') {
+      const n = parseInt(activeFilter);
+      words = activeFilter === '7'
+        ? words.filter(w => w.length >= 7)
+        : words.filter(w => w.length === n);
+    }
+
+    // Re-sort
+    words = sortWords(words, activeSort);
+
+    if (words.length === 0) {
+      emptyState.style.display = 'block';
+      midAd.style.display = 'none';
+      return;
+    }
+
+    // Stats
+    statsCount.textContent = words.length;
+    statsTime.textContent  = ` · ${result.stats.timeMs}ms`;
+    statsBar.style.display = 'flex';
+    midAd.style.display    = 'block';
+
+    // Group by length
+    const grouped = {};
+    words.forEach(w => {
+      if (!grouped[w.length]) grouped[w.length] = [];
+      grouped[w.length].push(w);
+    });
+
+    const maxLen = Math.max(...Object.keys(grouped).map(Number));
+    Object.keys(grouped).map(Number).sort((a,b) => b-a).forEach(len => {
+      const group = document.createElement('div');
+      group.className = 'length-group';
+      const isLongest = len === maxLen;
+      group.innerHTML = `
+        <div class="length-header">
+          <div class="length-badge${isLongest ? ' gold' : ''}">${len}</div>
+          <span class="length-count">${grouped[len].length} word${grouped[len].length!==1?'s':''}</span>
+        </div>
+        <div class="word-grid" id="wg-${len}"></div>
+      `;
+      resultsArea.appendChild(group);
+      const grid = group.querySelector(`#wg-${len}`);
+      grouped[len].forEach(word => {
+        const chip = document.createElement('button');
+        chip.className = 'word-chip';
+        chip.textContent = word;
+        chip.addEventListener('click', () => {
+          navigator.clipboard.writeText(word).then(() => {
+            chip.classList.add('copied');
+            chip.textContent = '✓';
+            setTimeout(() => { chip.classList.remove('copied'); chip.textContent = word; }, 1200);
+          });
+        });
+        grid.appendChild(chip);
+      });
+    });
+  }
+
+  function solve() {
+    const val = letterInput.value.trim();
+    if (!val) return;
+    spinner.style.display  = 'block';
+    resultsArea.innerHTML  = '';
+    emptyState.style.display = 'none';
+    statsBar.style.display = 'none';
+
+    requestAnimationFrame(() => {
+      setTimeout(() => {
+        const result = ScrambleEngine.solve(val, { sort: activeSort });
+        lastResult = result;
+        spinner.style.display = 'none';
+        renderResults(result);
+      }, 10);
+    });
+  }
+
+  letterInput.addEventListener('input', () => {
+    const val = letterInput.value.replace(/[^a-zA-Z]/g, '');
+    letterInput.value = val;
+    solveBtn.disabled = val.length < 2;
+    renderTiles(val);
+    if (!val) {
+      tileRow.innerHTML = '';
+      resultsArea.innerHTML = '';
+      emptyState.style.display = 'none';
+      statsBar.style.display = 'none';
+      midAd.style.display = 'none';
+      lastResult = null;
+    }
+  });
+
+  letterInput.addEventListener('keydown', e => { if (e.key === 'Enter' && !solveBtn.disabled) solve(); });
+  solveBtn.addEventListener('click', solve);
+
+  copyAllBtn.addEventListener('click', () => {
+    if (!lastResult) return;
+    navigator.clipboard.writeText(lastResult.words.join(', ')).then(() => {
+      copyAllBtn.textContent = '✓ Copied all!';
+      setTimeout(() => copyAllBtn.textContent = 'Copy all', 2000);
+    });
+  });
+
+  letterInput.focus();
+})();
+</script>
+</body>
+</html>

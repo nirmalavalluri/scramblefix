@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Scrabble Word Finder – Find Valid Scrabble Words | ScrambleFix</title>
+
+<meta content="scrabble word finder, scrabble helper, scrabble cheat, words from letters scrabble" name="keywords"/>
+<link href="/favicon.svg" rel="icon" type="image/svg+xml"/>
+
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<style>
+    :root {--primary:#6C3FF5;--accent2:#00C9A7;--bg:#0B0B0F;--bg2:#13131A;--bg3:#1C1C26;--border:rgba(255,255,255,0.08);--text:#F0EFF8;--muted:#8B8A9E;}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+    nav{position:sticky;top:0;z-index:100;background:rgba(11,11,15,0.85);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:0 max(20px,calc((100% - 1100px)/2));height:60px;display:flex;align-items:center;justify-content:space-between}
+    .nav-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:18px;background:linear-gradient(135deg,#a78bfa,var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-decoration:none}
+    .nav-back{font-size:14px;color:var(--muted);text-decoration:none}
+    .hero{padding:60px max(20px,calc((100% - 900px)/2)) 40px;text-align:center}
+    h1{font-family:'Syne',sans-serif;font-size:clamp(28px,5vw,52px);font-weight:800;margin-bottom:16px;letter-spacing:-1px}
+    .grad{background:linear-gradient(135deg,#a78bfa,var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+    .hero-sub{font-size:16px;color:var(--muted);max-width:520px;margin:0 auto 32px;line-height:1.7}
+    .tool-wrap{max-width:860px;margin:0 auto;padding:0 20px 60px}
+    .tool-card{background:var(--bg2);border:1px solid var(--border);border-radius:24px;overflow:hidden;box-shadow:0 0 60px rgba(108,63,245,0.1)}
+    .tool-input-row{display:flex;gap:12px;margin-bottom:20px;padding:28px 32px 0}
+    .letter-input{flex:1;background:var(--bg3);border:1.5px solid var(--border);border-radius:14px;padding:16px 22px;font-family:'Syne',sans-serif;font-size:24px;font-weight:700;letter-spacing:6px;text-transform:uppercase;color:var(--text);outline:none;transition:border-color .2s}
+    .letter-input:focus{border-color:var(--primary)}
+    .go-btn{background:linear-gradient(135deg,var(--primary),#4F2DD4);border:none;border-radius:14px;padding:0 28px;font-family:'Syne',sans-serif;font-size:16px;font-weight:700;color:#fff;cursor:pointer;min-width:140px}
+    .tiles-row{display:flex;gap:8px;flex-wrap:wrap;padding:0 32px 20px;min-height:56px}
+    .tile{width:44px;height:44px;background:var(--bg3);border:1px solid rgba(108,63,245,0.3);border-radius:10px;display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-size:18px;font-weight:700;color:#a78bfa;animation:tileIn .25s cubic-bezier(.34,1.56,.64,1) both}
+    @keyframes tileIn{from{transform:scale(0);opacity:0}to{transform:scale(1);opacity:1}}
+    .filters-bar{display:flex;gap:8px;flex-wrap:wrap;padding:0 32px 20px;border-bottom:1px solid var(--border)}
+    .f-btn{padding:7px 16px;border-radius:99px;border:1px solid var(--border);background:transparent;color:var(--muted);font-size:13px;font-weight:500;cursor:pointer;transition:all .15s;font-family:'Inter',sans-serif}
+    .f-btn.active{background:var(--primary);border-color:var(--primary);color:#fff}
+    .stats-bar{display:flex;gap:28px;flex-wrap:wrap;padding:0 32px 20px}
+    .sstat-val{font-family:'Syne',sans-serif;font-size:22px;font-weight:800;background:linear-gradient(135deg,#a78bfa,var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+    .sstat-lbl{font-size:12px;color:var(--muted)}
+    .results-area{padding:24px 32px 32px}
+    .loading{display:flex;align-items:center;justify-content:center;gap:12px;padding:3rem;color:var(--muted);font-size:15px}
+    .spinner{width:22px;height:22px;border:2px solid var(--border);border-top-color:var(--primary);border-radius:50%;animation:spin .7s linear infinite}
+    @keyframes spin{to{transform:rotate(360deg)}}
+    .results-group{margin-bottom:28px}
+    .group-title{font-family:'Syne',sans-serif;font-size:13px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+    .words-grid{display:flex;flex-wrap:wrap;gap:8px}
+    .word-chip{display:flex;align-items:center;gap:8px;padding:9px 16px;background:var(--bg3);border:1px solid var(--border);border-radius:10px;font-family:'Syne',sans-serif;font-size:15px;font-weight:600;color:var(--text);cursor:pointer;transition:all .15s;text-transform:uppercase;letter-spacing:1px}
+    .word-chip:hover{border-color:var(--primary);background:rgba(108,63,245,0.1);color:#a78bfa}
+    .empty{text-align:center;padding:3rem;color:var(--muted)}
+    .error-msg{background:rgba(231,70,70,0.1);border:1px solid rgba(231,70,70,0.3);color:#f87171;border-radius:12px;padding:14px 18px;font-size:14px;margin:0 32px 16px}
+    .seo-content{max-width:860px;margin:0 auto;padding:40px 20px 80px}
+    .seo-content h2{font-family:'Syne',sans-serif;font-size:24px;font-weight:700;margin-bottom:12px;color:#a78bfa}
+    .seo-content p{color:var(--muted);font-size:15px;line-height:1.8;margin-bottom:16px}
+    footer{background:var(--bg2);border-top:1px solid var(--border);padding:40px max(20px,calc((100% - 1100px)/2));display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
+    .footer-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:16px;color:var(--muted)}
+    .footer-links{display:flex;gap:24px}
+    .footer-links a{font-size:13px;color:var(--muted);text-decoration:none}
+    .footer-copy{font-size:12px;color:var(--muted);width:100%}
+    .toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(80px);background:#fff;color:#111;padding:12px 22px;border-radius:99px;font-size:14px;font-weight:600;box-shadow:0 8px 30px rgba(0,0,0,0.35);transition:transform .3s;pointer-events:none;z-index:999}
+    .toast.show{transform:translateX(-50%) translateY(0)}
+    @media(max-width:640px){.tool-input-row{flex-direction:column;padding:20px 18px 0}.go-btn{padding:16px}.tiles-row,.filters-bar,.stats-bar,.results-area{padding-left:18px;padding-right:18px}}
+  </style>
+<meta content="Find valid Scrabble words from your letters instantly. Search the official TWL and SOWPODS dictionaries and maximize your Scrabble score." name="description"/>
+<meta content="index, follow" name="robots"/>
+<meta content="ylM8Cs_qScVCcHf_xd80cJeVOA3JTQLj6cSMRDX2tdY" name="google-site-verification"/>
+<link href="https://scramblefix.io/scrabble-word-finder.html" rel="canonical"/>
+<meta content="website" property="og:type"/>
+<meta content="https://scramblefix.io/scrabble-word-finder.html" property="og:url"/>
+<meta content="Scrabble Word Finder – Find Valid Scrabble Words | ScrambleFix" property="og:title"/>
+<meta content="Find valid Scrabble words from your letters instantly. Search the official TWL and SOWPODS dictionaries and maximize your Scrabble score." property="og:description"/>
+<meta content="https://scramblefix.io/og-image.png" property="og:image"/>
+<meta content="ScrambleFix" property="og:site_name"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="Scrabble Word Finder – Find Valid Scrabble Words | ScrambleFix" name="twitter:title"/>
+<meta content="Find valid Scrabble words from your letters instantly. Search the official TWL and SOWPODS dictionaries and maximize your Scrabble score." name="twitter:description"/>
+<meta content="https://scramblefix.io/og-image.png" name="twitter:image"/>
+<script async="" crossorigin="anonymous" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1223182832425564"></script>
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "ScrambleFix Scrabble Word Finder",
+  "applicationCategory": "GameApplication",
+  "operatingSystem": "Web",
+  "url": "https://scramblefix.io/scrabble-word-finder.html",
+  "publisher": {
+    "@type": "Organization",
+    "name": "ScrambleFix",
+    "url": "https://scramblefix.io"
+  }
+}</script>
+</head>
+<body>
+<nav>
+<a class="nav-logo" href="/">ScrambleFix</a>
+<a class="nav-back" href="/">← Back to home</a>
+</nav>
+<div class="hero">
+<h1><span class="grad">Scrabble</span> Word Finder</h1>
+<p class="hero-sub">Enter your Scrabble rack letters and instantly find every valid word you can play. Sort by length to find the highest-scoring moves.</p>
+</div>
+<div class="tool-wrap">
+<div class="tool-card">
+<div class="tool-input-row">
+<input autocomplete="off" autocorrect="off" class="letter-input" id="letterInput" maxlength="15" placeholder="Enter letters..." spellcheck="false" type="text"/>
+<button class="go-btn" id="goBtn" onclick="unscramble()">✦ Find Words</button>
+</div>
+<div class="tiles-row" id="tilesRow"></div>
+<div id="errorArea"></div>
+<div class="stats-bar" id="statsBar" style="display:none">
+<div class="sstat"><div class="sstat-val" id="sWords">0</div><div class="sstat-lbl">Words found</div></div>
+<div class="sstat"><div class="sstat-val" id="sLongest">—</div><div class="sstat-lbl">Longest word</div></div>
+</div>
+<div class="filters-bar" id="filtersBar" style="display:none"></div>
+<div class="results-area" id="resultsArea"><div class="empty"><p>Enter your letters above and click Find Words</p></div></div>
+</div>
+</div>
+<div class="seo-content"><h2>How to Use the Scrabble Word Finder</h2><p>Enter up to 7 letters from your Scrabble rack into the box above and click Find Words. The tool searches over 270,000 valid Scrabble words and shows every word you can make, grouped by length.</p><h2>Why Use a Scrabble Word Finder?</h2><p>Finding the best Scrabble play requires checking hundreds of letter combinations. Our word finder does this instantly, showing you 2-letter words for quick plays and longer words for maximum points.</p><h2>Valid Scrabble Words</h2><p>Our dictionary includes words valid in both TWL (Tournament Word List used in North America) and SOWPODS (used internationally), covering over 270,000 valid words.</p></div>
+<footer>
+<span class="footer-logo">ScrambleFix</span>
+<div class="footer-links"><a href="/">Home</a><a href="/about.html">About</a><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a><a href="/contact.html">Contact</a></div>
+<p class="footer-copy">© 2026 ScrambleFix · scramblefix.io</p>
+<p class="footer-copy" style="margin-top:6px;font-size:11px;opacity:0.5">Not affiliated with Scrabble, Wordle, Words With Friends, Hasbro, Mattel, The New York Times, or Zynga. All trademarks belong to their respective owners.</p>
+</footer>
+<div class="toast" id="toast">Copied!</div>
+<script src="/words.js"></script>
+<script>
+const inputEl=document.getElementById('letterInput');
+const goBtnEl=document.getElementById('goBtn');
+const tilesEl=document.getElementById('tilesRow');
+const statsBar=document.getElementById('statsBar');
+const filtersBar=document.getElementById('filtersBar');
+const resultsArea=document.getElementById('resultsArea');
+const errorArea=document.getElementById('errorArea');
+let allWords={};
+let activeFilter='all';
+
+inputEl.addEventListener('input',()=>{const l=inputEl.value.replace(/[^a-zA-Z]/g,'');inputEl.value=l;renderTiles(l.toUpperCase())});
+inputEl.addEventListener('keydown',e=>{if(e.key==='Enter')unscramble()});
+
+function renderTiles(letters){tilesEl.innerHTML='';[...letters].forEach((l,i)=>{const t=document.createElement('div');t.className='tile';t.textContent=l;t.style.animationDelay=(i*.05)+'s';tilesEl.appendChild(t)})}
+
+function unscramble(){
+  const letters=inputEl.value.replace(/[^a-zA-Z]/g,'').toUpperCase();
+  if(letters.length<2){showError('Please enter at least 2 letters.');return}
+  errorArea.innerHTML='';
+  goBtnEl.disabled=true;goBtnEl.textContent='⟳ Searching…';
+  statsBar.style.display='none';filtersBar.style.display='none';
+  resultsArea.innerHTML='<div class="loading"><div class="spinner"></div> Finding words…</div>';
+  const lc={};
+  for(const c of letters)lc[c]=(lc[c]||0)+1;
+  allWords={};
+  for(const word of DICTIONARY){
+    if(word.length>letters.length)continue;
+    const wc={};let valid=true;
+    for(const c of word){wc[c]=(wc[c]||0)+1;if(wc[c]>(lc[c]||0)){valid=false;break}}
+    if(valid){const len=String(word.length);if(!allWords[len])allWords[len]=[];allWords[len].push(word)}
+  }
+  const lengths=Object.keys(allWords).map(Number).sort((a,b)=>a-b);
+  const allList=lengths.flatMap(l=>allWords[String(l)]||[]);
+  const longest=allList.reduce((a,b)=>b.length>a.length?b:a,'');
+  document.getElementById('sWords').textContent=allList.length;
+  document.getElementById('sLongest').textContent=longest||'—';
+  statsBar.style.display='flex';
+  filtersBar.innerHTML='';
+  addFilter('all','All ('+allList.length+')');
+  lengths.forEach(l=>addFilter(String(l),l+' letters ('+(allWords[String(l)]||[]).length+')'));
+  activeFilter='all';filtersBar.style.display='flex';
+  renderGroups(lengths);
+  goBtnEl.disabled=false;goBtnEl.textContent='✦ Find Words';
+}
+
+function addFilter(val,label){
+  const b=document.createElement('button');
+  b.className='f-btn'+(val===activeFilter?' active':'');
+  b.textContent=label;b.dataset.len=val;
+  b.onclick=()=>{activeFilter=val;document.querySelectorAll('.f-btn').forEach(x=>x.classList.remove('active'));b.classList.add('active');renderGroups(Object.keys(allWords).map(Number).sort((a,b)=>a-b))};
+  filtersBar.appendChild(b);
+}
+
+function renderGroups(lengths){
+  const show=activeFilter==='all'?lengths:[Number(activeFilter)];
+  resultsArea.innerHTML='';
+  show.forEach(len=>{
+    const words=(allWords[String(len)]||[]).sort();
+    if(!words.length)return;
+    const grp=document.createElement('div');grp.className='results-group';
+    grp.innerHTML='<div class="group-title">'+len+'-letter words <span style="opacity:.5;font-weight:400">('+words.length+')</span></div>';
+    const grid=document.createElement('div');grid.className='words-grid';
+    words.forEach(w=>{const chip=document.createElement('div');chip.className='word-chip';chip.textContent=w;chip.onclick=()=>copyWord(w,chip);grid.appendChild(chip)});
+    grp.appendChild(grid);resultsArea.appendChild(grp);
+  });
+  if(!resultsArea.children.length)resultsArea.innerHTML='<div class="empty"><p>No words found for this filter.</p></div>';
+}
+
+function copyWord(word,el){navigator.clipboard.writeText(word.toLowerCase()).catch(()=>{});el.style.color='#00C9A7';showToast('Copied "'+word.toLowerCase()+'"');setTimeout(()=>el.style.color='',1500)}
+function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2200)}
+function showError(msg){errorArea.innerHTML='<div class="error-msg">⚠️ '+msg+'</div>'}
+</script>
+</body>
+</html>

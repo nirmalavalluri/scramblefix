@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Letter Value Calculator – Scrabble &amp; WWF Score Calculator | ScrambleFix</title>
+<meta content="Calculate the Scrabble or Words With Friends point value of any word instantly. See each letter's score, total points, and tile breakdown." name="description"/>
+<meta content="index, follow" name="robots"/>
+<meta content="ylM8Cs_qScVCcHf_xd80cJeVOA3JTQLj6cSMRDX2tdY" name="google-site-verification"/>
+<link href="https://scramblefix.io/letter-value-calculator.html" rel="canonical"/>
+<meta content="website" property="og:type"/>
+<meta content="https://scramblefix.io/letter-value-calculator.html" property="og:url"/>
+<meta content="Letter Value Calculator – Scrabble &amp; WWF Score Calculator | ScrambleFix" property="og:title"/>
+<meta content="Calculate the Scrabble or Words With Friends point value of any word instantly. See each letter's score, total points, and tile breakdown." property="og:description"/>
+<meta content="https://scramblefix.io/og-image.png" property="og:image"/>
+<meta content="ScrambleFix" property="og:site_name"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="Letter Value Calculator – Scrabble &amp; WWF Score Calculator | ScrambleFix" name="twitter:title"/>
+<meta content="Calculate the Scrabble or Words With Friends point value of any word instantly. See each letter's score, total points, and tile breakdown." name="twitter:description"/>
+<meta content="https://scramblefix.io/og-image.png" name="twitter:image"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&amp;family=DM+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<script async="" crossorigin="anonymous" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1223182832425564"></script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "Letter Value Calculator \u2013 Scrabble & WWF Score Calculator | ScrambleFix", "description": "Calculate the Scrabble or Words With Friends point value of any word instantly. See each letter's score, total points, and tile breakdown.", "url": "https://scramblefix.io/letter-value-calculator.html", "applicationCategory": "UtilityApplication", "operatingSystem": "Web", "publisher": {"@type": "Organization", "name": "ScrambleFix", "url": "https://scramblefix.io"}}</script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#0a0e17;--surface:#111827;--border:#1f2937;--accent:#3b82f6;
+  --accent2:#10b981;--muted:#6b7280;--text:#f9fafb;--text-soft:#9ca3af;--tile-bg:#1e293b}
+body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;min-height:100vh}
+.container{max-width:880px;margin:0 auto;padding:0 20px}
+header{padding:20px 0 0;border-bottom:1px solid var(--border);background:var(--surface)}
+.header-inner{max-width:880px;margin:0 auto;padding:0 20px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.logo{font-family:'Syne',sans-serif;font-size:1.6rem;font-weight:800;color:var(--text);text-decoration:none;letter-spacing:-1px}
+.logo span{color:var(--accent)}
+nav{display:flex;gap:6px;flex-wrap:wrap;padding-bottom:12px}
+nav a{font-size:.78rem;font-weight:600;padding:5px 12px;border-radius:20px;border:1px solid var(--border);color:var(--text-soft);text-decoration:none;transition:all .2s;white-space:nowrap}
+nav a:hover,nav a.active{border-color:var(--accent);color:var(--accent)}
+.ad-slot{width:100%;text-align:center;margin:20px auto;max-width:728px}
+.hero{padding:48px 0 32px;text-align:center}
+.hero h1{font-family:'Syne',sans-serif;font-size:clamp(1.9rem,5vw,3rem);font-weight:800;letter-spacing:-1.5px;line-height:1.1}
+.hero h1 em{font-style:normal;color:var(--accent)}
+.hero p{margin:10px auto 0;max-width:540px;color:var(--text-soft);font-size:.95rem;line-height:1.6}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:28px;margin-bottom:16px}
+label.lbl{display:block;font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.8px;color:var(--muted);margin-bottom:8px}
+textarea,input[type=text]{width:100%;background:var(--bg);border:2px solid var(--border);border-radius:10px;padding:14px 16px;font-size:.95rem;font-family:'DM Sans',sans-serif;color:var(--text);outline:none;transition:border-color .2s;resize:vertical}
+textarea:focus,input[type=text]:focus{border-color:var(--accent)}
+textarea::placeholder,input[type=text]::placeholder{color:var(--muted)}
+.btn{width:100%;margin-top:14px;padding:13px;border-radius:10px;border:none;background:var(--accent);color:#fff;font-size:.9rem;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;transition:background .15s}
+.btn:hover{background:#2563eb}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.mode-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.mode-btn{padding:7px 16px;border-radius:8px;border:1px solid var(--border);background:transparent;color:var(--text-soft);font-size:.8rem;font-weight:600;cursor:pointer;transition:all .15s;font-family:'DM Sans',sans-serif}
+.mode-btn.active,.mode-btn:hover{background:var(--accent);border-color:var(--accent);color:#fff}
+.stats-row{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:20px}
+.stat{background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:10px 18px;text-align:center;flex:1;min-width:90px}
+.stat-val{font-family:'Syne',sans-serif;font-size:1.5rem;font-weight:800;color:var(--accent)}
+.stat-lbl{font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.4px}
+.copy-btn{font-size:.75rem;font-weight:600;padding:4px 12px;border-radius:20px;border:1px solid var(--border);background:transparent;color:var(--text-soft);cursor:pointer;transition:all .15s;font-family:'DM Sans',sans-serif}
+.copy-btn:hover{border-color:var(--accent2);color:var(--accent2)}
+.result-row{display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--border)}
+.result-row:last-child{border-bottom:none}
+.word-chip{display:inline-block;padding:5px 12px;background:var(--tile-bg);border:1px solid var(--border);border-radius:8px;font-family:'Syne',sans-serif;font-size:.8rem;font-weight:700;color:var(--text);cursor:pointer;transition:all .15s;letter-spacing:.5px;margin:3px}
+.word-chip:hover{border-color:var(--accent);color:var(--accent)}
+.tile-row{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
+.tile{width:48px;height:48px;background:var(--tile-bg);border:1px solid var(--border);border-radius:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:800;position:relative}
+.tile .letter{font-size:1.1rem;color:var(--text)}
+.tile .val{font-size:.6rem;color:var(--accent2);position:absolute;bottom:4px;right:5px}
+.tile.blank{border-color:var(--muted);opacity:.6}
+.total-score{font-family:'Syne',sans-serif;font-size:2.5rem;font-weight:800;color:var(--accent);text-align:center;padding:16px 0}
+.related{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:24px;margin:24px 0;text-align:center}
+.related h2{font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;margin-bottom:12px;color:var(--text-soft)}
+.related-links{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+.related-links a{padding:6px 14px;border-radius:20px;border:1px solid var(--border);color:var(--text-soft);text-decoration:none;font-size:.78rem;font-weight:600;transition:all .2s}
+.related-links a:hover{border-color:var(--accent);color:var(--accent)}
+footer{border-top:1px solid var(--border);background:var(--surface);padding:24px 20px;text-align:center;font-size:.75rem;color:var(--muted)}
+footer a{color:var(--muted);text-decoration:none;margin:0 8px}
+footer a:hover{color:var(--text-soft)}
+</style>
+</head><body><header><div class="header-inner">
+<a class="logo" href="/">Scramble<span>Fix</span></a>
+<nav>
+<a href="/">Unscrambler</a>
+<a href="/scrabble-word-finder.html">Scrabble</a>
+<a href="/wordle-helper.html">Wordle</a>
+<a href="/words-with-friends-helper.html">WWF</a>
+<a href="/two-letter-words.html">2-Letter</a>
+<a href="/word-sorter.html">Sorter</a>
+<a href="/sentence-shuffler.html">Shuffler</a>
+<a href="/duplicate-remover.html">Duplicates</a>
+<a href="/case-converter.html">Case</a>
+</nav>
+</div></header><div class="ad-slot"><ins class="adsbygoogle" data-ad-client="ca-pub-1223182832425564" data-ad-format="auto" data-ad-slot="YOUR_AD_SLOT" data-full-width-responsive="true" style="display:block"></ins>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
+<div class="container">
+<div class="hero">
+<h1>Letter Value <em>Calculator</em></h1>
+<p>Enter any word to see its Scrabble or Words With Friends point value. Click a tile to toggle it as a blank (0 points).</p>
+</div>
+<div class="card">
+<div class="mode-row">
+<button class="mode-btn active" data-game="scrabble">Scrabble</button>
+<button class="mode-btn" data-game="wwf">Words With Friends</button>
+</div>
+<label class="lbl">Enter a word</label>
+<input autocapitalize="characters" autocomplete="off" id="word-input" maxlength="20" placeholder="e.g. QUARTZ" type="text"/>
+</div>
+<div class="card" id="result-card" style="display:none">
+<div class="tile-row" id="tile-row"></div>
+<div class="total-score" id="total-score"></div>
+<p id="blank-hint" style="text-align:center;color:var(--muted);font-size:.8rem">Click any tile to toggle it as a blank tile (0 pts)</p>
+</div>
+<div class="related"><h2>Related Tools</h2><div class="related-links"><a href="/">Word Unscrambler</a><a href="/scrabble-word-finder.html">Scrabble Word Finder</a><a href="/high-scoring-scrabble-words.html">High-Scoring Words</a><a href="/q-without-u-words.html">Q Without U Words</a><a href="/words-with-friends-helper.html">WWF Helper</a></div></div></div><script>
+var SCRABBLE={A:1,B:3,C:3,D:2,E:1,F:4,G:2,H:4,I:1,J:8,K:5,L:1,M:3,N:1,O:1,P:3,Q:10,R:1,S:1,T:1,U:1,V:4,W:4,X:8,Y:4,Z:10};
+var WWF={A:1,B:4,C:4,D:2,E:1,F:4,G:3,H:3,I:1,J:10,K:5,L:2,M:4,N:2,O:1,P:4,Q:10,R:1,S:1,T:1,U:2,V:5,W:4,X:8,Y:3,Z:10};
+var blanks={};
+var activeGame='scrabble';
+var inp=document.getElementById('word-input');
+var card=document.getElementById('result-card');
+var tileRow=document.getElementById('tile-row');
+var totalEl=document.getElementById('total-score');
+
+function render(){
+  var w=inp.value.toUpperCase().replace(/[^A-Z]/g,'');
+  if(!w){card.style.display='none';return;}
+  var vals=activeGame==='scrabble'?SCRABBLE:WWF;
+  tileRow.innerHTML='';
+  blanks={};
+  var total=0;
+  w.split('').forEach(function(ch,i){
+    var v=vals[ch]||0;
+    total+=v;
+    var t=document.createElement('div');
+    t.className='tile';
+    t.innerHTML='<span class="letter">'+ch+'</span><span class="val">'+v+'</span>';
+    t.title='Click to toggle blank';
+    t.addEventListener('click',function(){
+      if(blanks[i]){delete blanks[i];t.classList.remove('blank');}
+      else{blanks[i]=true;t.classList.add('blank');}
+      recalc(w,vals);
+    });
+    tileRow.appendChild(t);
+  });
+  totalEl.textContent=total+' pts';
+  card.style.display='block';
+}
+function recalc(w,vals){
+  var total=0;
+  w.split('').forEach(function(ch,i){blanks[i]?0:total+=(vals[ch]||0);});
+  totalEl.textContent=total+' pts';
+}
+inp.addEventListener('input',render);
+document.querySelectorAll('.mode-btn').forEach(function(b){
+  b.addEventListener('click',function(){
+    document.querySelectorAll('.mode-btn').forEach(function(x){x.classList.remove('active');});
+    b.classList.add('active');
+    activeGame=b.dataset.game;
+    blanks={};
+    render();
+  });
+});
+</script><div class="ad-slot"><ins class="adsbygoogle" data-ad-client="ca-pub-1223182832425564" data-ad-format="auto" data-ad-slot="YOUR_AD_SLOT" data-full-width-responsive="true" style="display:block"></ins>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div><footer>
+<a href="/about.html">About</a><a href="/privacy.html">Privacy</a>
+<a href="/terms.html">Terms</a><a href="/contact.html">Contact</a>
+<p style="margin-top:8px">© 2025 ScrambleFix  ·  Not affiliated with Scrabble®, Wordle®, or Words With Friends®</p>
+</footer></body></html>

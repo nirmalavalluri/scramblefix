@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Case Converter – UPPERCASE, camelCase, snake_case &amp; More | ScrambleFix</title>
+<meta content="case converter, uppercase converter, lowercase converter, title case, camelCase converter, snake_case, kebab-case, text case changer" name="keywords"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&amp;family=DM+Mono:wght@400;500&amp;family=DM+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0a0e17; --surface: #111827; --border: #1f2937;
+      --accent: #10b981; --accent-hover: #059669;
+      --muted: #6b7280; --text: #f9fafb; --text-soft: #9ca3af; --tile-bg: #1e293b;
+    }
+    body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; min-height: 100vh; }
+    .container { max-width: 860px; margin: 0 auto; padding: 0 20px; }
+    header { padding: 20px 0 0; border-bottom: 1px solid var(--border); background: var(--surface); }
+    .header-inner { max-width: 860px; margin: 0 auto; padding: 0 20px; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+    .logo { font-family: 'Syne', sans-serif; font-size: 1.6rem; font-weight: 800; color: var(--text); text-decoration: none; letter-spacing: -1px; }
+    .logo span { color: #3b82f6; }
+    nav { display: flex; gap: 6px; flex-wrap: wrap; padding-bottom: 12px; }
+    nav a { font-size: .78rem; font-weight: 600; padding: 5px 12px; border-radius: 20px; border: 1px solid var(--border); color: var(--text-soft); text-decoration: none; transition: all .2s; }
+    nav a:hover, nav a.active { border-color: var(--accent); color: var(--accent); }
+    .ad-slot { width: 100%; text-align: center; margin: 24px auto; max-width: 728px; }
+    .hero { padding: 48px 0 0; text-align: center; }
+    .hero h1 { font-family: 'Syne', sans-serif; font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; letter-spacing: -2px; }
+    .hero h1 em { font-style: normal; color: var(--accent); }
+    .hero p { margin: 10px auto 0; max-width: 480px; color: var(--text-soft); font-size: .95rem; }
+    /* Input */
+    .input-card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 24px; margin: 28px 0 16px; }
+    textarea { width: 100%; background: var(--bg); border: 2px solid var(--border); border-radius: 10px; padding: 14px 16px; font-size: 1rem; font-family: 'DM Sans', sans-serif; color: var(--text); resize: vertical; outline: none; transition: border-color .2s; min-height: 100px; }
+    textarea:focus { border-color: var(--accent); }
+    textarea::placeholder { color: var(--muted); }
+    .hint { margin-top: 8px; font-size: .78rem; color: var(--muted); }
+    /* Conversion grid */
+    .conv-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 10px; margin-bottom: 16px; }
+    .conv-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 16px; cursor: pointer; transition: all .15s; position: relative; }
+    .conv-card:hover { border-color: var(--accent); }
+    .conv-card.flash { border-color: var(--accent); background: rgba(16,185,129,.08); }
+    .conv-label { font-size: .7rem; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 7px; display: flex; align-items: center; justify-content: space-between; }
+    .copy-badge { font-size: .65rem; color: var(--accent); opacity: 0; transition: opacity .15s; font-weight: 700; }
+    .conv-card:hover .copy-badge { opacity: 1; }
+    .conv-card.flash .copy-badge { opacity: 1; }
+    .conv-value { font-family: 'DM Mono', monospace; font-size: .88rem; color: var(--text); word-break: break-all; min-height: 1.2em; line-height: 1.5; }
+    .conv-value.empty { color: var(--muted); font-style: italic; font-family: 'DM Sans', sans-serif; font-size: .82rem; }
+    /* Copied toast */
+    .toast { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); background: var(--accent); color: #fff; font-size: .85rem; font-weight: 700; padding: 10px 24px; border-radius: 20px; opacity: 0; pointer-events: none; transition: opacity .2s; z-index: 999; }
+    .toast.show { opacity: 1; }
+    /* SEO */
+    .seo-section { margin: 40px 0; padding: 28px; background: var(--surface); border: 1px solid var(--border); border-radius: 16px; }
+    .seo-section h2 { font-family: 'Syne', sans-serif; font-size: 1.3rem; font-weight: 800; margin-bottom: 10px; }
+    .seo-section p, .seo-section li { color: var(--text-soft); font-size: .93rem; margin-bottom: 7px; }
+    .seo-section ul { padding-left: 20px; }
+    footer { border-top: 1px solid var(--border); padding: 28px 20px; text-align: center; color: var(--muted); font-size: .82rem; }
+    footer a { color: var(--muted); text-decoration: none; margin: 0 8px; }
+    footer a:hover { color: #3b82f6; }
+    footer p + p { margin-top: 8px; }
+  </style>
+<meta content="Convert text to UPPERCASE, lowercase, Title Case, camelCase, PascalCase, snake_case and kebab-case instantly. Free online case converter." name="description"/>
+<meta content="index, follow" name="robots"/>
+<meta content="ylM8Cs_qScVCcHf_xd80cJeVOA3JTQLj6cSMRDX2tdY" name="google-site-verification"/>
+<link href="https://scramblefix.io/case-converter.html" rel="canonical"/>
+<meta content="website" property="og:type"/>
+<meta content="https://scramblefix.io/case-converter.html" property="og:url"/>
+<meta content="Case Converter – UPPERCASE, camelCase, snake_case &amp; More | ScrambleFix" property="og:title"/>
+<meta content="Convert text to UPPERCASE, lowercase, Title Case, camelCase, PascalCase, snake_case and kebab-case instantly. Free online case converter." property="og:description"/>
+<meta content="https://scramblefix.io/og-image.png" property="og:image"/>
+<meta content="ScrambleFix" property="og:site_name"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="Case Converter – UPPERCASE, camelCase, snake_case &amp; More | ScrambleFix" name="twitter:title"/>
+<meta content="Convert text to UPPERCASE, lowercase, Title Case, camelCase, PascalCase, snake_case and kebab-case instantly. Free online case converter." name="twitter:description"/>
+<meta content="https://scramblefix.io/og-image.png" name="twitter:image"/>
+<script async="" crossorigin="anonymous" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1223182832425564"></script>
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "ScrambleFix Case Converter",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "Web",
+  "url": "https://scramblefix.io/case-converter.html",
+  "publisher": {
+    "@type": "Organization",
+    "name": "ScrambleFix",
+    "url": "https://scramblefix.io"
+  }
+}</script>
+</head>
+<body>
+<header>
+<div class="header-inner">
+<a class="logo" href="/">Scramble<span>Fix</span></a>
+<nav>
+<a href="/">Unscrambler</a>
+<a href="/word-sorter.html">Sorter</a>
+<a href="/duplicate-remover.html">Duplicates</a>
+<a class="active" href="/case-converter.html">Case</a>
+<a href="/sentence-shuffler.html">Shuffler</a>
+</nav>
+</div>
+</header>
+<!-- ═══ AD SLOT — swap YOUR_AD_SLOT with your real slot ID ════════ -->
+<div style="text-align:center;margin:20px auto;max-width:728px;">
+<ins class="adsbygoogle" data-ad-client="ca-pub-1223182832425564" data-ad-format="auto" data-ad-slot="YOUR_AD_SLOT" data-full-width-responsive="true" style="display:block"></ins>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+<div class="container">
+<div class="ad-slot">
+<ins class="adsbygoogle" data-ad-client="ca-pub-1223182832425564" data-ad-format="auto" data-ad-slot="YOUR_AD_SLOT" data-full-width-responsive="true" style="display:block"></ins>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+<div class="hero">
+<h1>Case <em>Converter</em></h1>
+<p>All 8 formats update live as you type. Click any card to copy instantly.</p>
+</div>
+<div class="input-card">
+<textarea id="text-input" placeholder="Start typing or paste your text here — all formats update live…" rows="3"></textarea>
+<p class="hint">💡 Click any result card below to copy it to clipboard</p>
+</div>
+<div class="conv-grid" id="conv-grid"></div>
+<div class="ad-slot">
+<ins class="adsbygoogle" data-ad-client="ca-pub-1223182832425564" data-ad-format="auto" data-ad-slot="YOUR_AD_SLOT_2" data-full-width-responsive="true" style="display:block"></ins>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+<div class="seo-section">
+<h2>All 8 Case Formats Explained</h2>
+<ul>
+<li><strong>UPPERCASE</strong> — All letters capitalized. Great for headings and emphasis.</li>
+<li><strong>lowercase</strong> — All letters in lower case.</li>
+<li><strong>Title Case</strong> — First letter of each word capitalized. Standard for titles and headings.</li>
+<li><strong>Sentence case</strong> — Only the first word and words after punctuation are capitalized.</li>
+<li><strong>camelCase</strong> — No spaces, each word starts with a capital (except the first). Used in JavaScript variable names.</li>
+<li><strong>PascalCase</strong> — Like camelCase but the first word is also capitalized. Common in class names.</li>
+<li><strong>snake_case</strong> — Words separated by underscores, all lowercase. Popular in Python and databases.</li>
+<li><strong>kebab-case</strong> — Words separated by hyphens, all lowercase. Standard for URLs and CSS classes.</li>
+</ul>
+</div>
+</div>
+<div class="toast" id="toast">Copied!</div>
+<footer>
+<p><a href="/">Home</a><a href="/about.html">About</a><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a><a href="/contact.html">Contact</a></p>
+<p>© 2026 ScrambleFix · scramblefix.io</p>
+<p style="margin-top:8px;font-size:.72rem;opacity:.5;">ScrambleFix is not affiliated with Scrabble®, Wordle®, Words With Friends®, Hasbro, Mattel, The New York Times, or Zynga.</p>
+</footer>
+<script>
+(function () {
+  function toTitle(s)    { return s.replace(/\w\S*/g, w => w[0].toUpperCase() + w.slice(1).toLowerCase()); }
+  function toSentence(s) { return s.toLowerCase().replace(/(^\s*\w|[.!?]\s*\w)/g, c => c.toUpperCase()); }
+  function toCamel(s)    { return s.toLowerCase().replace(/[^a-zA-Z0-9]+(.)/g, (_, c) => c.toUpperCase()); }
+  function toPascal(s)   { const c = toCamel(s); return c ? c[0].toUpperCase() + c.slice(1) : ''; }
+  function toSnake(s)    { return s.trim().replace(/\s+/g, '_').replace(/[^a-zA-Z0-9_]/g, '').toLowerCase(); }
+  function toKebab(s)    { return s.trim().replace(/\s+/g, '-').replace(/[^a-zA-Z0-9-]/g, '').toLowerCase(); }
+  function toAlt(s)      { return s.split('').map((c,i) => i%2===0 ? c.toLowerCase() : c.toUpperCase()).join(''); }
+
+  const CONVERSIONS = [
+    { id: 'upper',    label: 'UPPERCASE',    fn: s => s.toUpperCase() },
+    { id: 'lower',    label: 'lowercase',    fn: s => s.toLowerCase() },
+    { id: 'title',    label: 'Title Case',   fn: toTitle },
+    { id: 'sentence', label: 'Sentence case',fn: toSentence },
+    { id: 'camel',    label: 'camelCase',    fn: toCamel },
+    { id: 'pascal',   label: 'PascalCase',   fn: toPascal },
+    { id: 'snake',    label: 'snake_case',   fn: toSnake },
+    { id: 'kebab',    label: 'kebab-case',   fn: toKebab },
+  ];
+
+  const grid  = document.getElementById('conv-grid');
+  const input = document.getElementById('text-input');
+  const toast = document.getElementById('toast');
+  let toastTimer = null;
+
+  // Build cards
+  CONVERSIONS.forEach(({ id, label, fn }) => {
+    const card = document.createElement('div');
+    card.className = 'conv-card';
+    card.id = 'card-' + id;
+    card.innerHTML = `
+      <div class="conv-label">
+        ${label}
+        <span class="copy-badge">COPY ↗</span>
+      </div>
+      <div class="conv-value empty" id="val-${id}">—</div>
+    `;
+    card.addEventListener('click', () => {
+      const val = document.getElementById('val-' + id).textContent;
+      if (!val || val === '—') return;
+      navigator.clipboard.writeText(val).then(() => {
+        card.classList.add('flash');
+        setTimeout(() => card.classList.remove('flash'), 700);
+        // Toast
+        toast.textContent = `${label} copied!`;
+        toast.classList.add('show');
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => toast.classList.remove('show'), 2000);
+      });
+    });
+    grid.appendChild(card);
+  });
+
+  function update() {
+    const val = input.value;
+    CONVERSIONS.forEach(({ id, fn }) => {
+      const el = document.getElementById('val-' + id);
+      if (!val.trim()) {
+        el.textContent = '—';
+        el.classList.add('empty');
+      } else {
+        el.textContent = fn(val);
+        el.classList.remove('empty');
+      }
+    });
+  }
+
+  input.addEventListener('input', update);
+  input.focus();
+})();
+</script>
+</body>
+</html>

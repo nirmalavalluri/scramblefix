@@ -1,0 +1,10 @@
+name = "scramblefix"
+compatibility_date = "2024-01-01"
+
+[site]
+bucket = "./out"
+
+# Cloudflare Pages build settings (also set these in the dashboard):
+# Build command:    npm run build
+# Build output:     out
+# Node.js version:  18
