@@ -9,6 +9,7 @@ export default function Document() {
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
       </Head>
       <body>
+        <script dangerouslySetInnerHTML={{ __html: `(function(){var t=localStorage.getItem('sf_theme')||'dark';document.documentElement.setAttribute('data-theme',t);})();` }} />
         <Main />
         <NextScript />
       </body>

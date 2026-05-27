@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import Navbar from './Navbar';
 import Footer from './Footer';
+import { useState, useEffect } from 'react';
 
 const BASE    = 'https://scramblefix.io';
 const PUB_ID  = 'ca-pub-1223182832425564';
@@ -8,6 +9,21 @@ const SC_META = 'ylM8Cs_qScVCcHf_xd80cJeVOA3JTQLj6cSMRDX2tdY';
 const OG_IMG  = `${BASE}/og-image.png`;
 
 export default function Layout({ children, title, description, canonical, noFooter }) {
+  const [theme, setTheme] = useState('dark');
+
+  useEffect(() => {
+    const saved = localStorage.getItem('sf_theme') || 'dark';
+    setTheme(saved);
+    document.documentElement.setAttribute('data-theme', saved);
+  }, []);
+
+  const toggleTheme = () => {
+    const next = theme === 'dark' ? 'light' : 'dark';
+    setTheme(next);
+    localStorage.setItem('sf_theme', next);
+    document.documentElement.setAttribute('data-theme', next);
+  };
+
   const pageTitle = title
     ? `${title} | ScrambleFix`
     : 'ScrambleFix – Free Word Unscrambler & 60 Text Tools';
@@ -44,7 +60,7 @@ export default function Layout({ children, title, description, canonical, noFoot
       </Head>
 
       <div className="min-h-screen bg-[#0a0e17] text-[#f9fafb]" style={{ fontFamily:"'DM Sans', sans-serif" }}>
-        <Navbar />
+        <Navbar theme={theme} toggleTheme={toggleTheme} />
         <main>{children}</main>
         {!noFooter && <Footer />}
       </div>

@@ -9,12 +9,14 @@ const NAV_LINKS = [
   // { label: '⚡ Pro', href: '/pricing' }, // ← unhide when Stripe is ready
 ];
 
-export default function Navbar() {
+export default function Navbar({ theme = 'dark', toggleTheme }) {
   const { pathname } = useRouter();
   const [open, setOpen] = useState(false);
 
+  const navBg = theme === 'light' ? 'rgba(253,246,233,0.95)' : 'rgba(13,17,23,0.95)';
+
   return (
-    <header className="sticky top-0 z-50 bg-[#0d1117] border-b border-[#1f2937]" style={{ backdropFilter:'blur(12px)', background:'rgba(13,17,23,0.95)' }}>
+    <header className="sticky top-0 z-50 bg-[#0d1117] border-b border-[#1f2937]" style={{ backdropFilter:'blur(12px)', background: navBg }}>
       <div className="max-w-6xl mx-auto px-5">
         {/* Top row */}
         <div className="flex items-center justify-between h-14 gap-4">
@@ -39,13 +41,31 @@ export default function Navbar() {
             })}
           </nav>
 
-          {/* Mobile menu toggle */}
-          <button onClick={() => setOpen(o => !o)}
-            className="sm:hidden p-2 text-[#9ca3af] hover:text-[#f9fafb]" aria-label="Menu">
-            <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-              {open ? <path d="M6 18L18 6M6 6l12 12"/> : <path d="M3 12h18M3 6h18M3 18h18"/>}
-            </svg>
-          </button>
+          <div className="flex items-center gap-1">
+            {/* Theme toggle */}
+            <button onClick={toggleTheme}
+              className="p-2 text-[#9ca3af] hover:text-[#f9fafb] rounded-lg transition-colors duration-150"
+              aria-label="Toggle theme">
+              {theme === 'dark' ? (
+                <svg width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                  <circle cx="12" cy="12" r="5"/>
+                  <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+                </svg>
+              ) : (
+                <svg width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                  <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                </svg>
+              )}
+            </button>
+
+            {/* Mobile menu toggle */}
+            <button onClick={() => setOpen(o => !o)}
+              className="sm:hidden p-2 text-[#9ca3af] hover:text-[#f9fafb]" aria-label="Menu">
+              <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                {open ? <path d="M6 18L18 6M6 6l12 12"/> : <path d="M3 12h18M3 6h18M3 18h18"/>}
+              </svg>
+            </button>
+          </div>
         </div>
 
         {/* Category pills row */}
