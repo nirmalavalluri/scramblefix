@@ -2,7 +2,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 import Layout from '../../components/Layout';
 import ToolShell from '../../components/ToolShell';
-import { TOOLS, TOOL_BY_SLUG, TOOL_BY_CATEGORY as TOOLS_BY_CATEGORY, CATEGORIES } from '../../utils/toolConfig';
+import { TOOLS, TOOL_BY_SLUG, TOOLS_BY_CATEGORY, CATEGORIES } from '../../utils/toolConfig';
 
 const BASE = 'https://scramblefix.io';
 
