@@ -28,7 +28,7 @@ export const removePunctuation = (t) =>
 export const removeNumbers = (t) => t.replace(/\d/g, '');
 
 export const removeEmojis = (t) =>
-  t.replace(/[\u{1F300}-\u{1FAFF}]|[\u{2600}-\u{27BF}]|[\u{FE00}-\u{FEFF}]/gu, '').trim();
+  t.replace(/[\u{1F1E0}-\u{1F1FF}]|[\u{1F300}-\u{1FAFF}]|[\u{2300}-\u{27BF}]|[\u{FE00}-\u{FEFF}]|[\u{1FA00}-\u{1FAFF}]|\u{200D}|️/gu, '').trim();
 
 export const removeSymbols = (t) => t.replace(/[^a-zA-Z0-9\s\n]/g, '');
 
@@ -69,7 +69,7 @@ export const extractDates = (t) =>
   [...new Set(t.match(/\b\d{1,2}[\/\-\.]\d{1,2}[\/\-\.]\d{2,4}\b|\b(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]* \d{1,2},? \d{4}\b/gi)||[])];
 
 export const extractIpAddresses = (t) =>
-  [...new Set(t.match(/\b(?:\d{1,3}\.){3}\d{1,3}\b/g)||[])];
+  [...new Set((t.match(/\b(?:\d{1,3}\.){3}\d{1,3}\b/g)||[]).filter(ip=>ip.split('.').every(n=>Number(n)<=255)))];
 
 export const extractJsonObjects = (t) => {
   const found=[]; const rx=/\{[^{}]*\}/g; let m;
@@ -189,7 +189,12 @@ export const urlDecode    = (t) => { try{return decodeURIComponent(t);}catch(e){
 const HE={  '<':'&lt;','>':'&gt;','&':'&amp;','"':'&quot;',"'":'&#39;'};
 const HD=Object.fromEntries(Object.entries(HE).map(([k,v])=>[v,k]));
 export const htmlEncode = (t) => t.replace(/[<>&"']/g,c=>HE[c]||c);
-export const htmlDecode = (t) => t.replace(/&lt;|&gt;|&amp;|&quot;|&#39;/g,e=>HD[e]||e);
+export const htmlDecode = (t) => t
+  .replace(/&amp;/g,'&')
+  .replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&quot;/g,'"').replace(/&#39;/g,"'")
+  .replace(/&nbsp;/g,' ')
+  .replace(/&#(\d+);/g,(_,n)=>String.fromCharCode(Number(n)))
+  .replace(/&#x([0-9a-fA-F]+);/g,(_,h)=>String.fromCharCode(parseInt(h,16)));
 
 export const decodeJwt = (token) => {
   const parts=token.trim().split('.');
@@ -209,12 +214,14 @@ const POOL={upper:'ABCDEFGHIJKLMNOPQRSTUVWXYZ',lower:'abcdefghijklmnopqrstuvwxyz
 
 export const generatePassword = ({length=16,upper=true,lower=true,digits=true,symbols=false}={}) => {
   let pool='';
-  if(upper)   pool+=POOL.upper;
-  if(lower)   pool+=POOL.lower;
-  if(digits)  pool+=POOL.digits;
-  if(symbols) pool+=POOL.symbols;
-  if(!pool)   pool=POOL.lower+POOL.digits;
-  return Array.from({length},()=>pool[Math.floor(Math.random()*pool.length)]).join('');
+  const required=[];
+  if(upper)   {pool+=POOL.upper;   required.push(POOL.upper  [Math.floor(Math.random()*POOL.upper.length)]);}
+  if(lower)   {pool+=POOL.lower;   required.push(POOL.lower  [Math.floor(Math.random()*POOL.lower.length)]);}
+  if(digits)  {pool+=POOL.digits;  required.push(POOL.digits [Math.floor(Math.random()*POOL.digits.length)]);}
+  if(symbols) {pool+=POOL.symbols; required.push(POOL.symbols[Math.floor(Math.random()*POOL.symbols.length)]);}
+  if(!pool)   {pool=POOL.lower+POOL.digits;}
+  const rest=Array.from({length:Math.max(0,length-required.length)},()=>pool[Math.floor(Math.random()*pool.length)]);
+  return fisherYates([...required,...rest]).join('');
 };
 
 const ADJ=['swift','bold','calm','dark','bright','cool','wild','keen','sharp','deep','vast','quiet','brave','grand','rare'];

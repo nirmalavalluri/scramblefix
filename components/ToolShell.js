@@ -103,15 +103,14 @@ function CopyBtn({ text }) {
 
 // ── AI Key panel ──────────────────────────────────────────────────
 function AiKeyPanel({ onKey }) {
-  const [val,   setVal]   = useState('');
-  const [saved, setSaved] = useState(false);
-  const stored = typeof window !== 'undefined' ? getStoredKey() : '';
+  const [val,    setVal]    = useState('');
+  const [stored, setStored] = useState(() => typeof window !== 'undefined' ? getStoredKey() : '');
 
   if (stored) {
     return (
       <div className="flex items-center gap-3 p-3 bg-[#0a1f0a] border border-[#10b981] rounded-xl text-xs">
         <span className="text-[#10b981] font-semibold">✓ API key stored</span>
-        <button onClick={() => { localStorage.removeItem(AI_KEY_STORAGE); window.location.reload(); }}
+        <button onClick={() => { localStorage.removeItem(AI_KEY_STORAGE); setStored(''); onKey(''); }}
           className="text-[#6b7280] hover:text-[#ef4444] underline">Remove</button>
       </div>
     );
@@ -127,10 +126,10 @@ function AiKeyPanel({ onKey }) {
       <div className="flex gap-2">
         <input type="password" value={val} onChange={e => setVal(e.target.value)}
           placeholder="sk-ant-api..." className="flex-1 bg-[#111827] border border-[#1f2937] rounded-lg px-3 py-2 text-xs text-[#f9fafb] outline-none focus:border-[#3b82f6]" />
-        <button onClick={() => { saveKey(val); setSaved(true); onKey(val); }}
+        <button onClick={() => { saveKey(val); setStored(val); onKey(val); }}
           disabled={!val.startsWith('sk-')}
           className="px-4 py-2 bg-[#3b82f6] text-white text-xs font-semibold rounded-lg disabled:opacity-40">
-          {saved ? 'Saved ✓' : 'Save key'}
+          Save key
         </button>
       </div>
     </div>
