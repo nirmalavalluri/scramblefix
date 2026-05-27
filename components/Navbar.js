@@ -26,22 +26,22 @@ export default function Navbar({ theme = 'dark', toggleTheme }) {
             Scramble<span className="text-[#3b82f6]">Fix</span>
           </Link>
 
-          {/* Main nav */}
-          <nav className="hidden sm:flex items-center gap-1">
-            {NAV_LINKS.map(({ label, href }) => {
-              const active = href === '/' ? pathname === '/' : pathname.startsWith(href);
-              return (
-                <Link key={href} href={href}
-                  className={`px-4 py-1.5 rounded-full text-xs font-semibold transition-all duration-150 ${
-                    active ? 'bg-[#3b82f6] text-white' : 'text-[#9ca3af] hover:text-[#f9fafb] hover:bg-[#1f2937]'
-                  }`}>
-                  {label}
-                </Link>
-              );
-            })}
-          </nav>
-
+          {/* Right group: nav + theme toggle + mobile menu */}
           <div className="flex items-center gap-1">
+            <nav className="hidden sm:flex items-center gap-1">
+              {NAV_LINKS.map(({ label, href }) => {
+                const active = href === '/' ? pathname === '/' : pathname.startsWith(href);
+                return (
+                  <Link key={href} href={href}
+                    className={`px-4 py-1.5 rounded-full text-xs font-semibold transition-all duration-150 ${
+                      active ? 'bg-[#3b82f6] text-white' : 'text-[#9ca3af] hover:text-[#f9fafb] hover:bg-[#1f2937]'
+                    }`}>
+                    {label}
+                  </Link>
+                );
+              })}
+            </nav>
+
             {/* Theme toggle */}
             <button onClick={toggleTheme}
               className="p-2 text-[#9ca3af] hover:text-[#f9fafb] rounded-lg transition-colors duration-150"

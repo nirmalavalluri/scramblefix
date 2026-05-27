@@ -48,6 +48,21 @@
 [data-theme="light"] .text-\[\#10b981\]            { color: #059669 !important; }
 [data-theme="light"] .border-\[\#10b981\]          { border-color: #059669 !important; }
 
+/* AI cards and Pro teaser dark purple backgrounds */
+[data-theme="light"] .bg-\[\#130820\]              { background-color: #f3eeff !important; }
+[data-theme="light"] .bg-\[\#0d0a1a\]              { background-color: #f3eeff !important; }
+[data-theme="light"] .border-\[\#3d1a5e\]          { border-color: #c4a0f0 !important; }
+/* Pro teaser: override inline gradient background */
+[data-theme="light"] .border-\[\#3d1a5e\].rounded-2xl { background: linear-gradient(135deg,#f3eeff 0%,#ede0ff 50%,#f3eeff 100%) !important; }
+
+/* Letter tiles */
+[data-theme="light"] .bg-\[\#1e293b\]              { background-color: #e8d8b8 !important; }
+[data-theme="light"] .border-\[\#334155\]          { border-color: #d0b88a !important; }
+
+/* AI tool card text (near-white lavender → dark purple in light mode) */
+[data-theme="light"] .text-\[\#e9d5ff\]            { color: #5b21b6 !important; }
+[data-theme="light"] .text-\[\#c4b5fd\]            { color: #6d28d9 !important; }
+
 html {
   scroll-behavior: smooth;
 }
