@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <!-- ==============================
+       CORE NEXT.JS PAGES
+       ============================== -->
+  <url>
+    <loc>https://scramblefix.io/</loc>
+    <priority>1.0</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://scramblefix.io/enhanced-unscrambler/</loc>
+    <priority>0.9</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://scramblefix.io/word-sorter/</loc>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://scramblefix.io/case-converter/</loc>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://scramblefix.io/duplicate-remover/</loc>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://scramblefix.io/sentence-shuffler/</loc>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+
+  <!-- ==============================
+       WORD GAME TOOLS (static HTML)
+       ============================== -->
+  <url>
+    <loc>https://scramblefix.io/scrabble-word-finder</loc>
+    <priority>0.9</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://scramblefix.io/wordle-helper</loc>
+    <priority>0.9</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://scramblefix.io/wordle-solver</loc>
+    <priority>0.9</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://scramblefix.io/wordle-unlimited</loc>
+    <priority>0.7</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://scramblefix.io/spelling-bee-helper</loc>
+    <priority>0.8</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://scramblefix.io/boggle-solver</loc>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+
+  <!-- ==============================
+       REFERENCE PAGES (static HTML)
+       ============================== -->
+  <url>
+    <loc>https://scramblefix.io/3-letter-words</loc>
+    <priority>0.7</priority>
+    <changefreq>yearly</changefreq>
+  </url>
+
+  <!-- ADD MORE PAGES HERE as you expand:
+  <url>
+    <loc>https://scramblefix.io/your-new-page</loc>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  -->
+
+</urlset>

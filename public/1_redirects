@@ -1,0 +1,14 @@
+# ScrambleFix — Cloudflare Pages Redirects
+# Removes .html extensions from all static pages (301 permanent)
+# Place this file at: public/_redirects
+
+/scrabble-word-finder.html      /scrabble-word-finder      301
+/wordle-helper.html             /wordle-helper             301
+/wordle-solver.html             /wordle-solver             301
+/wordle-unlimited.html          /wordle-unlimited          301
+/spelling-bee-helper.html       /spelling-bee-helper       301
+/boggle-solver.html             /boggle-solver             301
+/3-letter-words.html            /3-letter-words            301
+
+# Add one line below for every other .html page in /public/
+# Pattern: /your-page-name.html   /your-page-name   301
