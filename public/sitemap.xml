@@ -1,38 +1,89 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <!-- CORE PAGES -->
   <url><loc>https://scramblefix.io/</loc><priority>1.0</priority><changefreq>weekly</changefreq></url>
-  <url><loc>https://scramblefix.io/enhanced-unscrambler.html</loc><priority>0.9</priority><changefreq>weekly</changefreq></url>
-  <url><loc>https://scramblefix.io/wordle-unlimited.html</loc><priority>0.9</priority><changefreq>daily</changefreq></url>
-  <url><loc>https://scramblefix.io/wordle-solver.html</loc><priority>0.9</priority><changefreq>daily</changefreq></url>
-  <url><loc>https://scramblefix.io/spelling-bee-helper.html</loc><priority>0.9</priority><changefreq>daily</changefreq></url>
-  <url><loc>https://scramblefix.io/boggle-solver.html</loc><priority>0.8</priority><changefreq>weekly</changefreq></url>
-  <url><loc>https://scramblefix.io/scrabble-word-finder.html</loc><priority>0.9</priority><changefreq>weekly</changefreq></url>
-  <url><loc>https://scramblefix.io/wordle-helper.html</loc><priority>0.9</priority><changefreq>weekly</changefreq></url>
-  <url><loc>https://scramblefix.io/words-with-friends-helper.html</loc><priority>0.9</priority><changefreq>weekly</changefreq></url>
-  <url><loc>https://scramblefix.io/anagram-solver.html</loc><priority>0.8</priority><changefreq>weekly</changefreq></url>
-  <url><loc>https://scramblefix.io/letter-value-calculator.html</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
-  <url><loc>https://scramblefix.io/word-frequency-counter.html</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
-  <url><loc>https://scramblefix.io/syllable-counter.html</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
-  <url><loc>https://scramblefix.io/text-reverser.html</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
-  <url><loc>https://scramblefix.io/vowel-consonant-counter.html</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
-  <url><loc>https://scramblefix.io/my-word-lists.html</loc><priority>0.6</priority><changefreq>monthly</changefreq></url>
-  <url><loc>https://scramblefix.io/search-history.html</loc><priority>0.5</priority><changefreq>monthly</changefreq></url>
-  <url><loc>https://scramblefix.io/embed.html</loc><priority>0.6</priority><changefreq>monthly</changefreq></url>
-  <url><loc>https://scramblefix.io/two-letter-words.html</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
-  <url><loc>https://scramblefix.io/3-letter-words.html</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
-  <url><loc>https://scramblefix.io/4-letter-words.html</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
-  <url><loc>https://scramblefix.io/5-letter-words.html</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
-  <url><loc>https://scramblefix.io/q-without-u-words.html</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
-  <url><loc>https://scramblefix.io/vowel-heavy-words.html</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
-  <url><loc>https://scramblefix.io/high-scoring-scrabble-words.html</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
-  <url><loc>https://scramblefix.io/words-ending-in-tion.html</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
-  <url><loc>https://scramblefix.io/double-letter-words.html</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
-  <url><loc>https://scramblefix.io/word-sorter.html</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
-  <url><loc>https://scramblefix.io/sentence-shuffler.html</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
-  <url><loc>https://scramblefix.io/duplicate-remover.html</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
-  <url><loc>https://scramblefix.io/case-converter.html</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
-  <url><loc>https://scramblefix.io/about.html</loc><priority>0.5</priority><changefreq>yearly</changefreq></url>
-  <url><loc>https://scramblefix.io/contact.html</loc><priority>0.5</priority><changefreq>yearly</changefreq></url>
-  <url><loc>https://scramblefix.io/privacy.html</loc><priority>0.3</priority><changefreq>yearly</changefreq></url>
-  <url><loc>https://scramblefix.io/terms.html</loc><priority>0.3</priority><changefreq>yearly</changefreq></url>
+  <url><loc>https://scramblefix.io/tools</loc><priority>0.9</priority><changefreq>weekly</changefreq></url>
+
+  <!-- STATIC HTML PAGES (/public/) -->
+  <url><loc>https://scramblefix.io/scrabble-word-finder</loc><priority>0.9</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://scramblefix.io/wordle-helper</loc><priority>0.9</priority><changefreq>daily</changefreq></url>
+  <url><loc>https://scramblefix.io/wordle-solver</loc><priority>0.9</priority><changefreq>daily</changefreq></url>
+  <url><loc>https://scramblefix.io/wordle-unlimited</loc><priority>0.7</priority><changefreq>weekly</changefreq></url>
+  <url><loc>https://scramblefix.io/spelling-bee-helper</loc><priority>0.8</priority><changefreq>daily</changefreq></url>
+  <url><loc>https://scramblefix.io/boggle-solver</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://scramblefix.io/3-letter-words</loc><priority>0.7</priority><changefreq>yearly</changefreq></url>
+
+  <!-- TEXT CLEANING (12) -->
+  <url><loc>https://scramblefix.io/tools/remove-blank-lines</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://scramblefix.io/tools/remove-extra-spaces</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://scramblefix.io/tools/remove-duplicate-lines</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://scramblefix.io/tools/remove-punctuation</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://scramblefix.io/tools/remove-numbers</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://scramblefix.io/tools/remove-emojis</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://scramblefix.io/tools/remove-symbols</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://scramblefix.io/tools/remove-stopwords</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://scramblefix.io/tools/trim-whitespace</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://scramblefix.io/tools/normalize-text</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://scramblefix.io/tools/strip-html-tags</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://scramblefix.io/tools/clean-json</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+
+  <!-- EXTRACTION (10) -->
+  <url><loc>https://scramblefix.io/tools/extract-emails</loc><priority>0.9</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://scramblefix.io/tools/extract-urls</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://scramblefix.io/tools/extract-phone-numbers</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://scramblefix.io/tools/extract-hashtags</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://scramblefix.io/tools/extract-mentions</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://scramblefix.io/tools/extract-numbers</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://scramblefix.io/tools/extract-dates</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://scramblefix.io/tools/extract-ip-addresses</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://scramblefix.io/tools/extract-json-objects</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://scramblefix.io/tools/extract-keywords</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+
+  <!-- FORMATTING (14) -->
+  <url><loc>https://scramblefix.io/tools/case-converter</loc><priority>0.9</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://scramblefix.io/tools/text-reverser</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://scramblefix.io/tools/word-sorter</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://scramblefix.io/tools/line-sorter</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://scramblefix.io/tools/sentence-shuffler</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://scramblefix.io/tools/line-shuffler</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://scramblefix.io/tools/word-counter</loc><priority>0.9</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://scramblefix.io/tools/character-counter</loc><priority>0.9</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://scramblefix.io/tools/word-frequency-analyzer</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://scramblefix.io/tools/text-indenter</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://scramblefix.io/tools/text-de-indenter</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://scramblefix.io/tools/sort-paragraphs</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://scramblefix.io/tools/shuffle-paragraphs</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://scramblefix.io/tools/split-text</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+
+  <!-- ENCODING (8) -->
+  <url><loc>https://scramblefix.io/tools/base64-encode</loc><priority>0.9</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://scramblefix.io/tools/base64-decode</loc><priority>0.9</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://scramblefix.io/tools/url-encode</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://scramblefix.io/tools/url-decode</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://scramblefix.io/tools/html-encode</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://scramblefix.io/tools/html-decode</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://scramblefix.io/tools/jwt-decoder</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://scramblefix.io/tools/morse-code-converter</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+
+  <!-- GENERATORS (10) -->
+  <url><loc>https://scramblefix.io/tools/password-generator</loc><priority>0.9</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://scramblefix.io/tools/username-generator</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://scramblefix.io/tools/random-word-generator</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://scramblefix.io/tools/lorem-ipsum-generator</loc><priority>0.9</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://scramblefix.io/tools/random-sentence-generator</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://scramblefix.io/tools/random-paragraph-generator</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://scramblefix.io/tools/random-number-generator</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://scramblefix.io/tools/random-emoji-generator</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://scramblefix.io/tools/random-color-generator</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://scramblefix.io/tools/uuid-generator</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+
+  <!-- AI TOOLS (6) -->
+  <url><loc>https://scramblefix.io/tools/ai-rewrite</loc><priority>0.9</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://scramblefix.io/tools/ai-grammar-fix</loc><priority>0.9</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://scramblefix.io/tools/ai-clarity-improve</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://scramblefix.io/tools/ai-tone-change</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://scramblefix.io/tools/ai-summarizer</loc><priority>0.9</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://scramblefix.io/tools/ai-paraphraser</loc><priority>0.9</priority><changefreq>monthly</changefreq></url>
+
 </urlset>
